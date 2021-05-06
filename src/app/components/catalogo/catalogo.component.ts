@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Catalogo } from '../../models/catalogo';
 import { ItemCompra } from '../../models/itemcompra';
 import { CatalogoService } from '../../services/catalogo.service';
+import { Catalogo } from '../../models/Catalogo';
 
 @Component({
   selector: 'app-catalogo',
@@ -10,11 +10,11 @@ import { CatalogoService } from '../../services/catalogo.service';
 })
 export class CatalogoComponent implements OnInit {
 
-  catalogos: Catalogo[]
+  catalogos: Catalogo[];
 
-  defaultCatalogo: Catalogo
+  defaultCatalogo: Catalogo;
 
-  itemsCompra: ItemCompra[]
+  itemsCompra: ItemCompra[];
 
   constructor(private catalogosService: CatalogoService) { }
 

@@ -3,7 +3,7 @@ import { Catalogo } from '../models/catalogo';
 import { Producto } from '../models/producto';
 // import { DEPORTISTAS } from './mock-deportistas';
 import { Observable, of } from 'rxjs';
-import {ItemCompra} from '../models/ItemCompra';
+import {ItemCompra} from '../models/itemCompra';
 import {HttpClient} from '@angular/common/http';
 
 
@@ -24,7 +24,7 @@ export class CatalogoService {
     this.catalogos = [] ;
     this.httpClient.get(`${this.API_URL}/catalogo/`).subscribe((data: Array<any>) => {
       data.forEach( dataItem => {
-            let catalogo1 = new Catalogo();
+            const catalogo1 = new Catalogo();
             catalogo1.id = dataItem.id;
             catalogo1.fecha_creacion = dataItem.fecha_creacion;
             catalogo1.admin_creador = dataItem.admin_creador;
@@ -38,15 +38,15 @@ export class CatalogoService {
     return of(this.catalogos.find(catalogo => catalogo.id === id));
   }
 
-  getItemsCompra(catalogo_id: number): Observable<ItemCompra[]>{
+  getItemsCompra(catalogoId: number): Observable<ItemCompra[]>{
     this.itemsCompra = [] ;
-    this.httpClient.get(`${this.API_URL}/catalogo/` + catalogo_id + '/items').subscribe((data: Array<any>) => {
+    this.httpClient.get(`${this.API_URL}/catalogo/` + catalogoId + '/items').subscribe((data: Array<any>) => {
       data.forEach( dataItem => {
-            let itemCompra1 = new ItemCompra();
+            const itemCompra1 = new ItemCompra();
             itemCompra1.id = dataItem.id;
             itemCompra1.imagenUrl = dataItem.imagenUrl;
             itemCompra1.visibilidad = dataItem.visibilidad;
-            this.httpClient.get<Producto>(`${this.API_URL}/catalogo/` + catalogo_id + '/itemproducto/' + itemCompra1.id)
+            this.httpClient.get<Producto>(`${this.API_URL}/catalogo/` + catalogoId + '/itemproducto/' + itemCompra1.id)
             .subscribe(producto => itemCompra1.producto = producto);
             this.itemsCompra.push(itemCompra1);
         });

@@ -8,8 +8,12 @@ import { AppRoutingModule } from './app-routing.module';
 
 //servicios
 
-import { CarritoItemCompraService } from './services/carrito-item-compra.service';
+import { AddProductService } from './services/add-product.service';
 import { CarritoConfirmarCompraService } from './services/carrito-confirmar-compra.service';
+import { CarritoItemCompraService } from './services/carrito-item-compra.service';
+import { CatalogoService } from './services/catalogo.service';
+import { LoginService } from './services/login.service';
+import { RegisterService } from './services/register.service';
 import { ClientService } from './services/client.service';
 
 
@@ -48,6 +52,10 @@ import { LoginComponent } from './components/login/login.component';
   providers: [
     ClientService,
     CarritoConfirmarCompraService,
+    AddProductService,
+    LoginService,
+    CatalogoService,
+    RegisterService,
     CarritoItemCompraService
   ],
   bootstrap: [AppComponent]

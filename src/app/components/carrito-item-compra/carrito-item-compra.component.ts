@@ -1,4 +1,6 @@
 import {Component } from '@angular/core';
+import { CarritoItemCompraService } from '../../services/carrito-item-compra.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
     selector: 'app-carritoItemCompra',
@@ -7,5 +9,10 @@ import {Component } from '@angular/core';
 })
 
 export class CarritoItemCompraComponent{
+
+    constructor(private _carritoItemCompra:CarritoItemCompraService) { 
+
+    
+    }
 
 }

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {AddProductService} from '../../services/add-product.service';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -7,7 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddProductComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private addProductService: AddProductService
+  ) {
+  }
 
   ngOnInit(): void {
   }
@@ -15,5 +21,18 @@ export class AddProductComponent implements OnInit {
   addProduct(): void {
     console.log('Añadir Producto');
 
+  }
+
+  async addToCart(): Promise<any> {
+    const userId = +this.route.snapshot.paramMap.get('id');
+    const itemId = 3;
+    let shoppingCart = await this.addProductService.getShoppingCart(userId);
+
+    if (shoppingCart && !shoppingCart.length) {
+      shoppingCart = await this.addProductService.createShoppingCart(userId);
+    }
+    console.log(shoppingCart);
+    await this.addProductService.addItem(userId, itemId);
+    window.alert('Su producto ha sido agregado al carrito de compras!');
   }
 }

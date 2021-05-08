@@ -1,19 +1,63 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from  '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AddProductService {
 
-  constructor(private  httpClient: HttpClient) { }
+  constructor(private  http: HttpClient) { }
 
-  API_URL  =  'https://colombia-tokio.herokuapp.com/';
+  API_URL  =  'http://127.0.0.1:8000';
 
-  addProduct(): void {
-    this.httpClient.post(`${this.API_URL}/deportistas/`+id+`/participaciones/`+idP+'/video/comentarios', formData).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
-    );
+   getShoppingCart(userId: number): Promise<any> {
+    return new Promise( (resolve, reject) => {
+      this.http.get(`${this.API_URL}/carrito/` + userId).subscribe(
+        (response: HttpResponse<any>) => {
+          resolve(response);
+        }, (err: HttpErrorResponse) => {
+          reject(err);
+        });
+     });
+  }
+
+  createShoppingCart(userId: number): Promise<any> {
+     const headers = { 'content-type': 'application/json'};
+     return new Promise( (resolve, reject) => {
+      this.http.post(`${this.API_URL}/carrito/` + userId,
+        {
+         usuario_id: userId
+       },
+       {headers}
+      ).subscribe(
+        (response) => {
+          resolve(response);
+        }, (err: HttpErrorResponse) => {
+          reject(err);
+        });
+     });
+  }
+
+  addItem(userId: number, itemId: number): Promise<any> {
+     const headers = { 'content-type': 'application/json'};
+     return new Promise( (resolve, reject) => {
+      this.http.post(`${this.API_URL}/itemcarrito/` + userId,
+        {
+          usuario_id: userId,
+          item_compras: [
+            {
+              itemCompra_id: itemId,
+              cantidad: 1
+            }
+          ]
+       },
+       {headers}
+      ).subscribe(
+        (response) => {
+          resolve(response);
+        }, (err: HttpErrorResponse) => {
+          reject(err);
+        });
+     });
   }
 }

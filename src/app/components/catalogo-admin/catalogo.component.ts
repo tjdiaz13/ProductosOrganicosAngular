@@ -5,10 +5,10 @@ import { CatalogoService } from '../../services/catalogo.service';
 
 @Component({
   selector: 'app-catalogo',
-  templateUrl: './catalogo.component.html',
+  templateUrl: './catalogo-admin.component.html',
   styleUrls: ['./catalogo.component.scss']
 })
-export class CatalogoComponent implements OnInit {
+export class CatalogoAdminComponent implements OnInit {
 
   catalogos: Catalogo[]
 
@@ -55,5 +55,13 @@ export class CatalogoComponent implements OnInit {
         console.log("test", this.itemsCompra);
         return;
       }
+  }
+
+  updatePrice(product_id: number, precio:number): void{
+    this.catalogosService.updatePrice(product_id, precio);
+  }
+
+  remove(itemCompra_id: number): void{
+    this.catalogosService.remove(itemCompra_id);
   }
 }

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Catalogo } from '../models/catalogo';
 import { Producto } from '../models/producto';
-// import { DEPORTISTAS } from './mock-deportistas';
-import { Observable, of } from 'rxjs';
-import {ItemCompra} from '../models/itemCompra';
-import {HttpClient} from '@angular/common/http';
+import { ItemCompra } from '../models/itemcompra';
+import { Observable, of, pipe } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { HttpClient } from  '@angular/common/http';
 
 
 @Injectable({
@@ -12,46 +12,29 @@ import {HttpClient} from '@angular/common/http';
 })
 export class CatalogoService {
 
-  constructor(private  httpClient: HttpClient
+  constructor(private  httpClient:  HttpClient
     ) { }
 
-  API_URL  =  'https://mercado-organico.herokuapp.com/';
+  //API_URL  =  'https://mercado-organico.herokuapp.com';
+  API_URL  =  'http://localhost:8000';
   private catalogos: Array<Catalogo>;
 
   private itemsCompra: Array<ItemCompra>;
 
-  getCatalogos(): Observable<Catalogo[]>{
-    this.catalogos = [] ;
-    this.httpClient.get(`${this.API_URL}/catalogo/`).subscribe((data: Array<any>) => {
-      data.forEach( dataItem => {
-            const catalogo1 = new Catalogo();
-            catalogo1.id = dataItem.id;
-            catalogo1.fecha_creacion = dataItem.fecha_creacion;
-            catalogo1.admin_creador = dataItem.admin_creador;
-            this.catalogos.push(catalogo1);
-        });
-      });
-    return of(this.catalogos);
-    }
+  getCatalogos(): Observable<Catalogo[]> {
+    return this.httpClient.get<Catalogo[]>(`${this.API_URL}/catalogo/`);
+  }
 
   getCatalogo(id: number): Observable<Catalogo> {
     return of(this.catalogos.find(catalogo => catalogo.id === id));
   }
 
-  getItemsCompra(catalogoId: number): Observable<ItemCompra[]>{
-    this.itemsCompra = [] ;
-    this.httpClient.get(`${this.API_URL}/catalogo/` + catalogoId + '/items').subscribe((data: Array<any>) => {
-      data.forEach( dataItem => {
-            const itemCompra1 = new ItemCompra();
-            itemCompra1.id = dataItem.id;
-            itemCompra1.imagenUrl = dataItem.imagenUrl;
-            itemCompra1.visibilidad = dataItem.visibilidad;
-            this.httpClient.get<Producto>(`${this.API_URL}/catalogo/` + catalogoId + '/itemproducto/' + itemCompra1.id)
-            .subscribe(producto => itemCompra1.producto = producto);
-            this.itemsCompra.push(itemCompra1);
-        });
-      });
-    return of(this.itemsCompra);
-    }
+  getItemsCompra(catalogo_id: number): Observable<ItemCompra[]> {
+    return this.httpClient.get<ItemCompra[]>(`${this.API_URL}/catalogo/` + catalogo_id + '/items');
+  }
+
+  getProducto(catalogo_id: number, item_id): Observable<Producto> {
+    return this.httpClient.get<Producto>(`${this.API_URL}/catalogo/` + catalogo_id + '/itemproducto/' + item_id);
+  }
 
 }

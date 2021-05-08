@@ -10,10 +10,8 @@ import { CatalogoService } from '../../services/catalogo.service';
 })
 export class CatalogoAdminComponent implements OnInit {
 
-  catalogos: Catalogo[]
-
-  itemsCompra: ItemCompra[]
-
+  catalogos: Catalogo[];
+  itemsCompra: ItemCompra[];
   constructor(private catalogosService: CatalogoService) { }
 
   ngOnInit(): void {
@@ -28,40 +26,40 @@ export class CatalogoAdminComponent implements OnInit {
       });
   }
 
-  getItemsCompra(catalogo_id: number): void{
-    this.catalogosService.getItemsCompra(catalogo_id).subscribe(
+  getItemsCompra(catalogoId: number): void{
+    this.catalogosService.getItemsCompra(catalogoId).subscribe(
     itemsCompra => {
-      this.getProductos(catalogo_id, itemsCompra, 0);
+      this.getProductos(catalogoId, itemsCompra, 0);
     });
   }
 
-  getProductos(catalogo_id: number, items: ItemCompra[], index: number): void{
-      if(index < items.length)
+  getProductos(catalogoId: number, items: ItemCompra[], index: number): void{
+      if (index < items.length)
       {
-        var item = items[index];
-        console.log("test4", item);
-        this.catalogosService.getProducto(catalogo_id,item.id).subscribe(
+        const item = items[index];
+        console.log('test4', item);
+        this.catalogosService.getProducto(catalogoId, item.id).subscribe(
         producto => {
           item.producto = producto[0];
           items[index] = item;
-          console.log("test3", items[index]);
+          console.log('test3', items[index]);
           index++;
-          this.getProductos(catalogo_id, items, index);
+          this.getProductos(catalogoId, items, index);
         });
       }
       else
       {
         this.itemsCompra = items;
-        console.log("test", this.itemsCompra);
+        console.log('test', this.itemsCompra);
         return;
       }
   }
 
-  updatePrice(product_id: number, precio:number): void{
-    this.catalogosService.updatePrice(product_id, precio);
+  updatePrice(productId: number, precio:number): void{
+    // this.catalogosService.updatePrice(productId, precio);
   }
 
-  remove(itemCompra_id: number): void{
-    this.catalogosService.remove(itemCompra_id);
+  remove(itemCompraId: number): void{
+    // this.catalogosService.remove(itemCompraId);
   }
 }

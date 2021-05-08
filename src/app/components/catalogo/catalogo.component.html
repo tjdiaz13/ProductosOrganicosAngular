@@ -1,16 +1,31 @@
-<h2>Catalogo</h2>
-<ul class = "itemcompra">
-  <li *ngFor="let itemcompra of itemsCompra">
-    <div *ngIf="itemcompra.visibilidad==true">
-      <div class="card"> <! -- routerLink = "/catalogo/productos/{{itemcompra.producto.id}}">
-        <img src="{{itemcompra.imagenUrl}}" alt="Imagen no disponible" style="width:100%">
-        <div class="container">
-          <div *ngIf="itemcompra.producto">
-            <h4><b>{{itemcompra.producto.nombre}}</b></h4>
-            <p>{{itemcompra.producto.precio}}</p>
+<div *ngIf="!icSeleccionado" class="catalogo">
+  <Button  class="button ver-carrito" (click)="unselect()">Ver Carrito</Button>
+  <h2 class="tittle">Catalogo de productos</h2>
+  <ul class = "itemcompra">
+    <li *ngFor="let itemcompra of itemsCompra" class="card">
+      <div *ngIf="itemcompra.visibilidad==true">
+        <div (click)="selectedProduct(itemcompra)" class="card" routerLink = "/catalogo/">
+          <img src="{{itemcompra.imagenUrl}}" alt="Imagen no disponible" width="100px" height="100px">
+          <div class="container">
+            <div *ngIf="itemcompra.producto">
+              <h4><b>{{itemcompra.producto.nombre}}</b></h4>
+              <p>Precio: {{itemcompra.producto.precio}} COP</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </li>
-</ul>
+    </li>
+  </ul>
+</div>
+<div *ngIf="icSeleccionado">
+  <Button  class="button" (click)="unselect()">Volver al catalogo</Button>
+  <h2 class="tittle">Producto Seleccionado</h2>
+  <div class="center">
+    <h2 class="tittle">{{icSeleccionado.producto.nombre}}</h2>
+    <img class="image" src="{{icSeleccionado.imagenUrl}}" alt="Imagen no disponible">
+    <p>Precio: {{icSeleccionado.producto.precio}} COP</p>
+    <label>Cantidad:  </label>
+    <input class="input" type="number"  [(ngModel)]="cantidad">
+    <button class="button agregar-carrito" (click)="addToCart(icSeleccionado.id)">Agregar a Carrito</button>
+  </div>
+</div>

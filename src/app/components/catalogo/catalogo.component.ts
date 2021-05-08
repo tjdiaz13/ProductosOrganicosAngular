@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Catalogo } from '../../models/catalogo';
 import { ItemCompra } from '../../models/itemcompra';
+import { Producto } from '../../models/producto';
 import { CatalogoService } from '../../services/catalogo.service';
 
 @Component({
@@ -13,6 +14,8 @@ export class CatalogoComponent implements OnInit {
   catalogos: Catalogo[]
 
   itemsCompra: ItemCompra[]
+
+  icSeleccionado: ItemCompra
 
   constructor(private catalogosService: CatalogoService) { }
 
@@ -55,5 +58,13 @@ export class CatalogoComponent implements OnInit {
         console.log("test", this.itemsCompra);
         return;
       }
+  }
+
+  selectedProduct(ic: ItemCompra): void{
+    this.icSeleccionado = ic;
+  }
+
+  unselect(): void{
+    this.icSeleccionado = null;
   }
 }

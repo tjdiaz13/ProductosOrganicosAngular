@@ -15,8 +15,8 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit(): void {
     this._logoutServices.logout;
-    localStorage.setItem('userId', null);
-    localStorage.setItem('username', null);
+    localStorage.setItem('userId', '');
+    localStorage.setItem('username', '');
   }
 
 }

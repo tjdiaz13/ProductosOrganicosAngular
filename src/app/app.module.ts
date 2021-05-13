@@ -15,7 +15,7 @@ import { CatalogoService } from './services/catalogo.service';
 import { LoginService } from './services/login.service';
 import { RegisterService } from './services/register.service';
 import { ClientService } from './services/client.service';
-
+import { LogoutService } from './services/logout.service';
 
 //componentes
 import { AppComponent } from './app.component';
@@ -29,6 +29,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
+
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { LogoutComponent } from './components/logout/logout.component';
     CarritoConfirmarCompraService,
     AddProductService,
     LoginService,
+    LogoutService,
     CatalogoService,
     RegisterService,
     CarritoItemCompraService

@@ -38,13 +38,16 @@ export class LoginComponent implements OnInit {
     };
 
     this._loginServices.create(data).subscribe(response => {
-      console.log(response); 
-      this._loginServices.gettoken(response); 
+      localStorage.setItem('userId', response.data.id);
+      localStorage.setItem('username', response.data.username);
+      console.log(response);
       this.submitted = true;
+      this.router.navigate(['/catalogo']);
     },
       error => {
         console.log(error);
       });
+    
 
   }
   newClient(): void {

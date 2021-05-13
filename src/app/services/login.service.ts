@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, pipe } from 'rxjs';
+import { Auth } from '../models/auth';
+
+
 
 const baseUrl = 'http://127.0.0.1:8000/signin';
 
@@ -10,13 +13,24 @@ const baseUrl = 'http://127.0.0.1:8000/signin';
 
 export class LoginService {
 
+  private _auth: Auth | undefined; 
+
+  get Auth(): Auth {
+    return { ...this.Auth! }
+  }
+
   constructor(private http: HttpClient) { 
     
       console.log("Servicio listo para usar"); 
   }
 
   create(data): Observable<any> {
-    return this.http.post(baseUrl, data);
+    return this.http.post<Auth>(baseUrl, data);
+  }
+
+  gettoken(response) {
+    this._auth = response; 
+    console.log(this._auth);
   }
 }
 

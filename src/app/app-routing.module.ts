@@ -1,15 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { CatalogoComponent } from './components/catalogo/catalogo.component';
 import { AddClientComponent } from './components/add-client/add-client.component';
+import { CarritoItemCompraComponent } from './components/carrito-item-compra/carrito-item-compra.component';
+import { CarritoConfirmarCompraComponent } from './components/carrito-confirmar-compra/carrito-confirmar-compra.component';
 import { LoginComponent } from './components/login/login.component';
 import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   { path: 'catalogo', component: CatalogoComponent },
+  { path: 'carrito', component: CarritoItemCompraComponent },
+  { path: 'carritoConfirmar', component: CarritoConfirmarCompraComponent },
   { path: 'add', component: AddClientComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent }
+  { path: 'home', component: HomeComponent },
+  { path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
 
 @NgModule({

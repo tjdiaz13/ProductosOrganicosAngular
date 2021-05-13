@@ -3,6 +3,8 @@ import { Catalogo } from '../../models/catalogo';
 import { ItemCompra } from '../../models/itemcompra';
 import { CatalogoService } from '../../services/catalogo.service';
 import {AddProductService} from '../../services/add-product.service';
+import { Router, RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-catalogo',
@@ -17,6 +19,7 @@ export class CatalogoComponent implements OnInit {
 
   constructor(
     private catalogosService: CatalogoService,
+    private router: Router,
     private addProductService: AddProductService
     ) { }
 
@@ -67,6 +70,7 @@ export class CatalogoComponent implements OnInit {
 
   unselect(): void{
     this.icSeleccionado = null;
+    this.router.navigate(['/carrito']);
   }
 
   async addToCart(itemId: number): Promise<any> {

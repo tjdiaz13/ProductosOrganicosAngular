@@ -1,5 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {LoginService} from '../../services/login.service';
+import { Router, RouterModule } from '@angular/router';
+
+
 
 
 
@@ -15,12 +18,17 @@ export class LoginComponent implements OnInit {
   }
   submitted = false;
 
-  constructor( private _loginServices:LoginService ) { 
+
+  constructor( private _loginServices:LoginService, private router: Router) { 
      
   }
 
   ngOnInit(): void {
     
+  }
+  login(){
+
+    this.router.navigate(['/catalogo']);
   }
 
   saveUser(): void {
@@ -30,7 +38,8 @@ export class LoginComponent implements OnInit {
     };
 
     this._loginServices.create(data).subscribe(response => {
-      console.log(response);
+      console.log(response); 
+      this._loginServices.gettoken(response); 
       this.submitted = true;
     },
       error => {

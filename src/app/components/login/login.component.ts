@@ -2,10 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import {LoginService} from '../../services/login.service';
 import { Router, RouterModule } from '@angular/router';
 
-
-
-
-
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html'
@@ -15,19 +11,19 @@ export class LoginComponent implements OnInit {
   user  = {
     username: '',
     password: ''
-  }
+  };
   submitted = false;
 
-
-  constructor( private _loginServices:LoginService, private router: Router) { 
-     
+  constructor(
+    private _loginServices: LoginService,
+    private router: Router) {
   }
 
   ngOnInit(): void {
 
   }
-  login(){
 
+  login(){
     this.router.navigate(['/catalogo']);
   }
 
@@ -42,19 +38,20 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('username', response.data.username);
       console.log(response);
       this.submitted = true;
-      this.router.navigate(['/catalogo']);
+      this.router.navigate(['catalogo'])
+      .then(() => {
+        window.location.reload();
+      });
     },
       error => {
         console.log(error);
       });
-    
-
   }
   newClient(): void {
     this.submitted = false;
     this.user = {
-      "username": "",
-      "password": ""
+      'username': '',
+      'password': ''
     };
   }
 

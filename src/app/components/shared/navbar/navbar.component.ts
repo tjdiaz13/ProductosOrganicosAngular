@@ -25,8 +25,4 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/home']);
     this.ngOnInit();
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> b219297c92047227702bb977c0afb40a478849e2

@@ -7,14 +7,11 @@ import { LoginService } from '../../../services/login.service';
   templateUrl: './navbar.component.html'
 })
 
-
-
 export class NavbarComponent implements OnInit {
-   
-  userID: number;
-  userNAME: string; 
 
-  
+  userID: number;
+  userNAME: string;
+
   constructor(private router: Router, private loginService: LoginService) { }
 
   ngOnInit(): void {
@@ -26,7 +23,6 @@ export class NavbarComponent implements OnInit {
     localStorage.setItem('userId', '');
     localStorage.setItem('username', '');
     this.router.navigate(['/home']);
-  
+    this.ngOnInit();
   }
-
 }

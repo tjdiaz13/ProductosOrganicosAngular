@@ -77,7 +77,7 @@ export class CatalogoComponent implements OnInit {
     if (this.cantidad < 1) {
       window.alert('Cantidad no válida');
     } else {
-      const userId = 1;
+      const userId = Number(localStorage.getItem('userId'));
       let shoppingCart = await this.addProductService.getShoppingCart(userId);
 
       if (shoppingCart && !shoppingCart.length) {

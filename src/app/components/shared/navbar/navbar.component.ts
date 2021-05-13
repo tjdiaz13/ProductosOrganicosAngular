@@ -17,6 +17,11 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  userlogin(){
+    const userId = Number(localStorage.getItem('userId'));
+    const userName = Number(localStorage.getItem('userId'));
+  }
+
   logout(){
 
     this.router.navigate(['/home']);

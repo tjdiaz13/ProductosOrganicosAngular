@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Catalogo } from '../models/catalogo';
 import { Producto } from '../models/producto';
-import { ItemCompra } from '../models/itemcompra';
+import { ItemCompras } from '../models/itemCarrito';
 import { ShoppingCar } from '../models/ShoppingCar';
 //import { DEPORTISTAS } from './mock-deportistas';
 import { Observable, of } from 'rxjs';
@@ -18,17 +18,25 @@ export class CarritoItemCompraService {
   API_URL  =  'http://localhost:8000';
   private catalogos: Array<Catalogo>;
 
-  private itemsCompra: Array<ItemCompra>;
+  private itemsCompra: Array<ItemCompras>;
 
+  getCarrito(_id: number): Observable<ItemCompras[]> {
+    return this.httpClient.get<ItemCompras[]>(`${this.API_URL}/itemcarrito/` + _id);
+  }
   getCatalogos(): Observable<Catalogo[]> {
     return this.httpClient.get<Catalogo[]>(`${this.API_URL}/catalogo/`);
   }
 
-  getCarrito(_id: number): Observable<ItemCompra[]> {
-    return this.httpClient.get<ItemCompra[]>(`${this.API_URL}/itemcarrito/` + _id);
+  getCatalogo(id: number): Observable<Catalogo> {
+    return of(this.catalogos.find(catalogo => catalogo.id === id));
   }
 
-  getProducto(_id: number, item_id): Observable<Producto> {
-    return this.httpClient.get<Producto>(`${this.API_URL}/catalogo/` + _id + '/itemproducto/' + item_id);
+  getItemsCompra(catalogo_id: number): Observable<ItemCompras[]> {
+    return this.httpClient.get<ItemCompras[]>(`${this.API_URL}/catalogo/` + catalogo_id + '/items');
   }
+
+  getProducto(catalogo_id: number, item_id): Observable<Producto> {
+    return this.httpClient.get<Producto>(`${this.API_URL}/catalogo/` + catalogo_id + '/itemproducto/' + item_id);
+  }
+  
 }

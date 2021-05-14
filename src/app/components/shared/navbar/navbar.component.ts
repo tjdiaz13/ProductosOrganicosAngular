@@ -22,7 +22,7 @@ export class NavbarComponent implements OnInit {
   logout(){
     localStorage.setItem('userId', '');
     localStorage.setItem('username', '');
-    this.router.navigate(['/home']);
+    this.router.navigate(['/logout']);
     this.ngOnInit();
   }
 }

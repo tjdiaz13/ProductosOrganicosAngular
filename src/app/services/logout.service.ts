@@ -10,25 +10,12 @@ const baseUrl = 'http://127.0.0.1:8000/signout';
 })
 export class LogoutService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    
+  }
 
-  API_URL  =  'http://localhost:8000/';
-
-  logout() {
-    const headers = { 'content-type': 'application/json'};
-    return new Promise( (resolve, reject) => {
-     this.http.post(`${this.API_URL}/signout/`,
-       {
-        
-      },
-      {headers}
-     ).subscribe(
-       (response) => {
-         resolve(response);
-       }, (err: 0) => {
-         reject(err);
-       });
-    });
+  logout(token) {
+    return this.http.post(baseUrl, token);
   }
 
 }

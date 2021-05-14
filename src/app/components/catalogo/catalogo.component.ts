@@ -24,6 +24,7 @@ export class CatalogoComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    console.log(localStorage.getItem('token'));
     this.getCatalogos();
   }
 

@@ -8,15 +8,30 @@ import { Router, RouterModule } from '@angular/router';
   styleUrls: ['./logout.component.scss']
 })
 export class LogoutComponent implements OnInit {
+   
+  userTOKEN: string;
 
   constructor(private _logoutServices:LogoutService, private router: Router) { 
     
   }
 
+
+
   ngOnInit(): void {
-    this._logoutServices.logout;
-    localStorage.setItem('userId', '');
-    localStorage.setItem('username', '');
+
+    const data = {
+      user: localStorage.getItem('token')
+    };
+    console.log(this.userTOKEN);
+    this._logoutServices.logout(data).subscribe(response => {;
+          localStorage.setItem('userId', '');
+          localStorage.setItem('username', '');
+          console.log(localStorage.getItem('token'));
+          this.router.navigate(['/home']);
+    },
+      error => {
+         console.log(error);
+    });
   }
 
 }

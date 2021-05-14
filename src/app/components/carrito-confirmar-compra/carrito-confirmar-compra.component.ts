@@ -8,8 +8,7 @@ import { CarritoConfirmarCompraService } from '../../services/carrito-confirmar-
 })
 export class CarritoConfirmarCompraComponent implements OnInit {
 
-  constructor( private _carritoConfirmarService:CarritoConfirmarCompraService) { 
-    
+  constructor( private carritoConfirmarService: CarritoConfirmarCompraService) {
   }
 
   ngOnInit(): void {

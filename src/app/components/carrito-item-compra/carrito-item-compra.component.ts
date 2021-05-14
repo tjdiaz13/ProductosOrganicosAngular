@@ -15,7 +15,7 @@ export class CarritoItemCompraComponent {
     precioTotal: number;
     status: string;
 
-    constructor( private carritoService:CarritoItemCompraService) {
+    constructor( private carritoService: CarritoItemCompraService) {
 
     }
 
@@ -57,8 +57,11 @@ export class CarritoItemCompraComponent {
       this.precioTotal = total;
     }
 
-    delToCart(Itemid: number){
-        this.carritoService.delProducto(this.userID, Itemid).subscribe(() => this.status = 'Delete successful');
+    delToCart(Itemid: number): void{
+        this.carritoService.delProducto(this.userID, Itemid).subscribe(() => {
+          this.status = 'Delete successful';
+          this.ngOnInit();
+        });
     }
 
 }

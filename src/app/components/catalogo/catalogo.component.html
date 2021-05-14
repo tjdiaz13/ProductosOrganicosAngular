@@ -1,5 +1,5 @@
 <div *ngIf="!icSeleccionado" class="catalogo">
-  <Button  class="button ver-carrito" (click)="unselect()">Ver Carrito</Button>
+  <Button  class="button ver-carrito" routerLink = "/carrito">Ver Carrito</Button>
   <h2 class="tittle">Catalogo de productos</h2>
   <ul class = "itemcompra">
     <li *ngFor="let itemcompra of itemsCompra" class="card">

@@ -4,7 +4,7 @@
             <div class="col-lg-12 col-md-12 col-12">
                 <h3 class="display-5 mb-2 text-center">Carrito de Compra</h3>
                 <p class="mb-5 text-center">
-                    <i class="text-info font-weight-bold">3</i> productos en tu carrito</p>
+                    productos en tu carrito</p>
                 <table id="shoppingCart" class="table table-condensed table-responsive">
                     <thead>
                         <tr>
@@ -15,43 +15,31 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <ul class="itemcompra">
-                            <li *ngFor="let itemcompra of itemsCompra" class="card">
-                                <tr>
-                                    <td data-th="Product">
-                                        <div class="row">
-                                            <div class="col-md-3 text-left">
-                                                <img src={{itemcompra.imagenUrl}} alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                        <tr *ngFor="let itemcarrito of itemsCarrito">
+                            <td data-th="Product">
+                                <div class="row">
+                                    <div class="col-md-3 text-left">
+                                        <img src={{itemcarrito.imagenUrl}} alt="" class="img-fluid d-none d-md-block rounded mb-2 shadow ">
+                                    </div>
+                                    <div class="col-md-9 text-left mt-sm-2">
+                                        <h4>{{itemcarrito.producto.nombre}}</h4>
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-th="Price">{{itemcarrito.producto.precio}}</td>
+                            <td data-th="Quantity">
+                                {{itemcarrito.cantidad}}
+                            </td>
+                            <td>
+                                <button type="button" name="remove_product" class="btn btn-danger btn-xs" (click)="delToCart(itemcarrito.item_compra_id)">Eliminar</button>
+                            </td>
 
-                                            </div>
-                                            <div class="col-md-9 text-left mt-sm-2">
-                                                <h4>carrito </h4>
-                                                <p class="font-weight-light">Brand &amp; Name</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td data-th="Price">{{itemcompra.producto.precio}}</td>
-                                    <td data-th="Quantity">
-                                        {{ itemcompra.cantidad }}
-                                    </td>
-                                    <td class="actions" data-th="">
-                                        <div class="text-right">
-                                            <button class="btn btn-white border-secondary bg-white btn-md mb-2">
-                                      <i class="fas fa-sync"></i>
-                                  </button>
-                                            <button class="btn btn-white border-secondary bg-white btn-md mb-2">
-                                      <i class="fas fa-trash"></i>
-                                  </button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </li>
-                        </ul>
+                        </tr>
                     </tbody>
                 </table>
                 <div class="float-right text-right">
                     <h4>Subtotal:</h4>
-                    <h1>$99.00</h1>
+                    <h1>{{precioTotal}}</h1>
                 </div>
             </div>
         </div>

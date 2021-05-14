@@ -12,6 +12,7 @@ export class CarritoItemCompraComponent {
 
     itemsCarrito: ItemCarrito[];
     userID: number;
+    precioTotal: number;
 
     constructor( private carritoService:CarritoItemCompraService) {
 
@@ -42,9 +43,16 @@ export class CarritoItemCompraComponent {
       else
       {
         this.itemsCarrito = items;
+        this.calcularTotal(items);
         return;
       }
-  }
+    }
 
-
+    calcularTotal(items: ItemCarrito[]): void{
+      var total = 0;
+      items.forEach(function(item){
+        total += item.cantidad * item.producto.precio;
+      });
+      this.precioTotal = total;
+    }
 }

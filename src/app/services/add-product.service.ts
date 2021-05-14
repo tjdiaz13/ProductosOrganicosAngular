@@ -38,7 +38,7 @@ export class AddProductService {
      });
   }
 
-  addItem(userId: number, itemId: number): Promise<any> {
+  addItem(userId: number, itemId: number, cantidad: number): Promise<any> {
      const headers = { 'content-type': 'application/json'};
      return new Promise( (resolve, reject) => {
       this.http.post(`${this.API_URL}/itemcarrito/` + userId,
@@ -47,7 +47,7 @@ export class AddProductService {
           item_compras: [
             {
               itemCompra_id: itemId,
-              cantidad: 1
+              cantidad
             }
           ]
        },

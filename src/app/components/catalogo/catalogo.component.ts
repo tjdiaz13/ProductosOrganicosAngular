@@ -83,7 +83,7 @@ export class CatalogoComponent implements OnInit {
         shoppingCart = await this.addProductService.createShoppingCart(userId);
       }
       console.log(shoppingCart);
-      await this.addProductService.addItem(userId, itemId);
+      await this.addProductService.addItem(userId, itemId, this.cantidad);
       window.alert('Su producto ha sido agregado al carrito de compras!');
     }
   }

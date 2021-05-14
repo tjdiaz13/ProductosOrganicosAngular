@@ -4,7 +4,7 @@ import { ItemCarrito } from '../../models/itemcarrito';
 
 
 @Component({
-    selector: 'app-carritoItemCompra',
+    selector: 'app-carrito-item-compra',
     templateUrl: './carrito-item-compra.component.html'
 })
 
@@ -50,8 +50,8 @@ export class CarritoItemCompraComponent {
     }
 
     calcularTotal(items: ItemCarrito[]): void{
-      var total = 0;
-      items.forEach(function(item){
+      let total = 0;
+      items.forEach((item) => {
         total += item.cantidad * item.producto.precio;
       });
       this.precioTotal = total;

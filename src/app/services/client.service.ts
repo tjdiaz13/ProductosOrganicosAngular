@@ -7,7 +7,6 @@ import { Register } from '../models/register';
 })
 export class ClientService {
 
-
   model: Model;
   register: Register;
 
@@ -15,16 +14,13 @@ export class ClientService {
 
     this.model = {
       roles: [
-        { id: 1, nombre: "Cliente" },
-        { id: 2, nombre: "Productor" }
+        { id: 1, nombre: 'Cliente' },
+        { id: 2, nombre: 'Productor' }
       ]
     };
 
     this.register = {
       rol: this.model.roles[0],
-    }
-
+    };
   }
-
-
 }

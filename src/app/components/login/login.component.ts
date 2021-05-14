@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  login(){
+  login(): void{
     this.router.navigate(['/catalogo']);
   }
 

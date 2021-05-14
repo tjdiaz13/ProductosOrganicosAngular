@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, pipe } from 'rxjs';
 import { Auth } from '../models/auth';
 
-
-
-const baseUrl = 'http://127.0.0.1:8000/signin';
+const baseUrl = 'https://mercado-organico-django.herokuapp.com/signin';
 
 @Injectable({
   providedIn: 'root'
@@ -13,15 +11,14 @@ const baseUrl = 'http://127.0.0.1:8000/signin';
 
 export class LoginService {
 
-  private _auth: Auth | undefined; 
+  private auth: Auth | undefined;
 
   get Auth(): Auth {
-    return { ...this.Auth! }
+    return { ...this.Auth! };
   }
 
-  constructor(private http: HttpClient) { 
-    
-      console.log("Servicio listo para usar"); 
+  constructor(private http: HttpClient) {
+      console.log('Servicio listo para usar');
   }
 
   create(data): Observable<any> {
@@ -29,8 +26,8 @@ export class LoginService {
   }
 
   gettoken(response) {
-    this._auth = response; 
-    console.log(this._auth);
+    this.auth = response;
+    console.log(this.auth);
   }
 }
 

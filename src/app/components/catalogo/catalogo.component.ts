@@ -47,12 +47,10 @@ export class CatalogoComponent implements OnInit {
       if (index < items.length)
       {
         const item = items[index];
-        console.log('test4', item);
         this.catalogosService.getProducto(catalogoId, item.id).subscribe(
         producto => {
           item.producto = producto[0];
           items[index] = item;
-          console.log('test3', items[index]);
           index++;
           this.getProductos(catalogoId, items, index);
         });
@@ -71,7 +69,7 @@ export class CatalogoComponent implements OnInit {
 
   unselect(): void{
     this.icSeleccionado = null;
-    this.router.navigate(['/carrito']);
+    this.router.navigate(['/catalogo']);
   }
 
   async addToCart(itemId: number): Promise<any> {
@@ -87,7 +85,6 @@ export class CatalogoComponent implements OnInit {
       console.log(shoppingCart);
       await this.addProductService.addItem(userId, itemId);
       window.alert('Su producto ha sido agregado al carrito de compras!');
-      this.unselect();
     }
   }
 }

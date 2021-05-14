@@ -1,7 +1,7 @@
-import { ItemCompras } from './itemCarrito';
+import { ItemCarrito } from './itemCarrito';
 
 export class Carrito {
    id: number;
    usuario_id: number;
-   itemcompras: ItemCompras;
+   item_compras: ItemCarrito[];
 }

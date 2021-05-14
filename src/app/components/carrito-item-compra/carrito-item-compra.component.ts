@@ -24,7 +24,6 @@ export class CarritoItemCompraComponent {
 
     async getItemsCarrito(): Promise<any>{
         const carrito = await this.carritoService.getShoppingCart(this.userID);
-        console.log('algo2', carrito[0].item_compras);
         this.getProductos(carrito[0].item_compras, 0);
     }
 
@@ -43,7 +42,6 @@ export class CarritoItemCompraComponent {
       else
       {
         this.itemsCarrito = items;
-        console.log('test5', this.itemsCarrito);
         return;
       }
   }

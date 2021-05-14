@@ -1,7 +1,6 @@
 import {Component } from '@angular/core';
 import { CarritoItemCompraService } from '../../services/carrito-item-compra.service';
-import { ItemCarrito } from '../../models/itemcarrito';
-
+import {ItemCarrito} from '../../models/itemCarrito';
 
 @Component({
     selector: 'app-carrito-item-compra',

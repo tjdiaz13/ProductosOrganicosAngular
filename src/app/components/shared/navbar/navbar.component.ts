@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
-import { LoginService } from '../../../services/login.service';
+import {LogoutService} from '../../../services/logout.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,18 +11,26 @@ export class NavbarComponent implements OnInit {
 
   userID: number;
   userNAME: string;
+  token: string;
 
-  constructor(private router: Router, private loginService: LoginService) { }
+  constructor(
+    private router: Router,
+    private logoutServices: LogoutService
+  ) { }
 
   ngOnInit(): void {
     this.userID =  Number(localStorage.getItem('userId'));
     this.userNAME = localStorage.getItem('username');
+    this.token = localStorage.getItem('token');
   }
 
-  logout(){
-    localStorage.setItem('userId', '');
-    localStorage.setItem('username', '');
-    this.router.navigate(['/logout']);
-    this.ngOnInit();
+  logout(): void {
+    this.logoutServices.logout(this.token).then(() => {
+        console.log('after executing service');
+        localStorage.setItem('userId', '');
+        localStorage.setItem('username', '');
+        this.router.navigate(['/home']);
+        this.ngOnInit();
+    });
   }
 }

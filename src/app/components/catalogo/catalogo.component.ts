@@ -3,6 +3,8 @@ import { Catalogo } from '../../models/catalogo';
 import { ItemCompra } from '../../models/itemcompra';
 import { CatalogoService } from '../../services/catalogo.service';
 import {AddProductService} from '../../services/add-product.service';
+import { Router, RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-catalogo',
@@ -17,10 +19,12 @@ export class CatalogoComponent implements OnInit {
 
   constructor(
     private catalogosService: CatalogoService,
+    private router: Router,
     private addProductService: AddProductService
     ) { }
 
   ngOnInit(): void {
+    console.log(localStorage.getItem('token'));
     this.getCatalogos();
   }
 
@@ -43,12 +47,10 @@ export class CatalogoComponent implements OnInit {
       if (index < items.length)
       {
         const item = items[index];
-        console.log('test4', item);
         this.catalogosService.getProducto(catalogoId, item.id).subscribe(
         producto => {
           item.producto = producto[0];
           items[index] = item;
-          console.log('test3', items[index]);
           index++;
           this.getProductos(catalogoId, items, index);
         });
@@ -67,6 +69,7 @@ export class CatalogoComponent implements OnInit {
 
   unselect(): void{
     this.icSeleccionado = null;
+    this.router.navigate(['/catalogo']);
   }
 
   async addToCart(itemId: number): Promise<any> {
@@ -82,7 +85,6 @@ export class CatalogoComponent implements OnInit {
       console.log(shoppingCart);
       await this.addProductService.addItem(userId, itemId, this.cantidad);
       window.alert('Su producto ha sido agregado al carrito de compras!');
-      this.unselect();
     }
   }
 }

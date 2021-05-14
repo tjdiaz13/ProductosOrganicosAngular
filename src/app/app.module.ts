@@ -15,20 +15,21 @@ import { CatalogoService } from './services/catalogo.service';
 import { LoginService } from './services/login.service';
 import { RegisterService } from './services/register.service';
 import { ClientService } from './services/client.service';
-
+import { LogoutService } from './services/logout.service';
 
 //componentes
 import { AppComponent } from './app.component';
 import { CatalogoComponent } from './components/catalogo/catalogo.component';
 import { AddClientComponent } from './components/add-client/add-client.component';
 import { CarritoItemCompraComponent } from './components/carrito-item-compra/carrito-item-compra.component';
-
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CarritoConfirmarCompraComponent } from './components/carrito-confirmar-compra/carrito-confirmar-compra.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { LoginComponent } from './components/login/login.component';
     CarritoConfirmarCompraComponent,
     NavbarComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +54,7 @@ import { LoginComponent } from './components/login/login.component';
     CarritoConfirmarCompraService,
     AddProductService,
     LoginService,
+    LogoutService,
     CatalogoService,
     RegisterService,
     CarritoItemCompraService

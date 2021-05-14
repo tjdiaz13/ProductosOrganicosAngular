@@ -2,33 +2,23 @@ import { Component, OnInit } from '@angular/core';
 import { Catalogo } from '../../models/catalogo';
 import { ItemCompra } from '../../models/itemcompra';
 import { CatalogoService } from '../../services/catalogo.service';
-import {AddProductService} from '../../services/add-product.service';
-import { Router, RouterModule } from '@angular/router';
-
 
 @Component({
   selector: 'app-catalogo',
-  templateUrl: './catalogo.component.html',
+  templateUrl: './catalogo-admin.component.html',
   styleUrls: ['./catalogo.component.scss']
 })
-export class CatalogoComponent implements OnInit {
-  cantidad: number;
+export class CatalogoAdminComponent implements OnInit {
+
   catalogos: Catalogo[];
   itemsCompra: ItemCompra[];
-  icSeleccionado: ItemCompra;
-
-  constructor(
-    private catalogosService: CatalogoService,
-    private router: Router,
-    private addProductService: AddProductService
-    ) { }
+  constructor(private catalogosService: CatalogoService) { }
 
   ngOnInit(): void {
-    console.log(localStorage.getItem('token'));
     this.getCatalogos();
   }
 
-  getCatalogos(): void{
+  getCatalogos(){
     this.catalogosService.getCatalogos().subscribe(
       catalogos => {
         const listadoCatalogos = catalogos;
@@ -47,10 +37,12 @@ export class CatalogoComponent implements OnInit {
       if (index < items.length)
       {
         const item = items[index];
+        console.log('test4', item);
         this.catalogosService.getProducto(catalogoId, item.id).subscribe(
         producto => {
           item.producto = producto[0];
           items[index] = item;
+          console.log('test3', items[index]);
           index++;
           this.getProductos(catalogoId, items, index);
         });
@@ -63,28 +55,11 @@ export class CatalogoComponent implements OnInit {
       }
   }
 
-  selectedProduct(ic: ItemCompra): void{
-    this.icSeleccionado = ic;
+  updatePrice(productId: number, precio:number): void{
+    // this.catalogosService.updatePrice(productId, precio);
   }
 
-  unselect(): void{
-    this.icSeleccionado = null;
-    this.router.navigate(['/catalogo']);
-  }
-
-  async addToCart(itemId: number): Promise<any> {
-    if (this.cantidad < 1) {
-      window.alert('Cantidad no válida');
-    } else {
-      const userId = Number(localStorage.getItem('userId'));
-      let shoppingCart = await this.addProductService.getShoppingCart(userId);
-
-      if (shoppingCart && !shoppingCart.length) {
-        shoppingCart = await this.addProductService.createShoppingCart(userId);
-      }
-      console.log(shoppingCart);
-      await this.addProductService.addItem(userId, itemId, this.cantidad);
-      window.alert('Su producto ha sido agregado al carrito de compras!');
-    }
+  remove(itemCompraId: number): void{
+    // this.catalogosService.remove(itemCompraId);
   }
 }

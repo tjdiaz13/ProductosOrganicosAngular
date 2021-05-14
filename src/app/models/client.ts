@@ -13,7 +13,6 @@ export interface Rol {
   nombre: string;
 }
 
-
 export interface Model {
   roles: Array<Rol>;
 

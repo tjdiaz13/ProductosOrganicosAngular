@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
 
 export class CarritoConfirmarCompraService {
 
-  constructor() { 
-      console.log("Servicio listo para usar"); 
+  constructor() {
+      console.log('Servicio listo para usar');
   }
 }

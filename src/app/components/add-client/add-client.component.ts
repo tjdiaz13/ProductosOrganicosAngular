@@ -11,12 +11,12 @@ export class AddClientComponent implements OnInit {
   @Input() rol: string;
 
   user = {
-    "username": "",
-    "password": "",
-    "password2": "",
-    "email": "",
-    "first_name": "",
-    "last_name": "",
+    "username": '',
+    "password": '',
+    "password2": '',
+    "email": '',
+    "first_name": '',
+    "last_name": '',
     "clientprofile": 1
   }
   submitted = false;

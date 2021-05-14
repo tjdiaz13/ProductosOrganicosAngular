@@ -10,11 +10,11 @@ import {ItemCompra} from '../models/itemCompra';
 })
 export class CatalogoService {
 
-  constructor(private  httpClient:  HttpClient
+  constructor(private  httpClient: HttpClient
     ) { }
 
-  // API_URL  =  'https://mercado-organico.herokuapp.com';
-  API_URL  =  'http://localhost:8000';
+  API_URL  =  'https://mercado-organico-django.herokuapp.com';
+
   private catalogos: Array<Catalogo>;
 
   private itemsCompra: Array<ItemCompra>;

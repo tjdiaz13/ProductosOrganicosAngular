@@ -73,14 +73,14 @@ export class CatalogoComponent implements OnInit {
     if (this.cantidad < 1) {
       window.alert('Cantidad no válida');
     } else {
-      const userId = 1;
+      const userId = Number(localStorage.getItem('userId'));
       let shoppingCart = await this.addProductService.getShoppingCart(userId);
 
       if (shoppingCart && !shoppingCart.length) {
         shoppingCart = await this.addProductService.createShoppingCart(userId);
       }
       console.log(shoppingCart);
-      await this.addProductService.addItem(userId, itemId);
+      await this.addProductService.addItem(userId, itemId, this.cantidad);
       window.alert('Su producto ha sido agregado al carrito de compras!');
       this.unselect();
     }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Catalogo } from '../../models/catalogo';
-import { ItemCompra } from '../../models/itemcompra';
 import { CatalogoService } from '../../services/catalogo.service';
 import {AddProductService} from '../../services/add-product.service';
 import { Router, RouterModule } from '@angular/router';
+import {ItemCompra} from '../../models/itemCompra';
+import {Catalogo} from '../../models/catalogo';
 
 
 @Component({

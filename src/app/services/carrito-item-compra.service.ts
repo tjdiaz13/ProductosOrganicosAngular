@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Catalogo } from '../models/catalogo';
 import { Producto } from '../models/producto';
 import { ItemCarrito } from '../models/itemCarrito';
-import { Carrito } from '../models/carrito';
-import { ShoppingCar } from '../models/ShoppingCar';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpErrorResponse, HttpResponse } from  '@angular/common/http';
 
@@ -12,10 +9,10 @@ import { HttpClient, HttpErrorResponse, HttpResponse } from  '@angular/common/ht
 
 export class CarritoItemCompraService {
 
-  constructor(private  httpClient:  HttpClient
+  constructor(private  httpClient: HttpClient
     ) { }
 
-  API_URL  =  'http://localhost:8000';
+  API_URL  =  'https://mercado-organico-django.herokuapp.com';
 
   getShoppingCart(userId: number): Promise<any> {
     return new Promise( (resolve, reject) => {
@@ -28,12 +25,12 @@ export class CarritoItemCompraService {
      });
   }
 
-  getProducto(item_id): Observable<Producto> {
-    return this.httpClient.get<Producto>(`${this.API_URL}/itemproducto/` + item_id);
+  getProducto(itemId): Observable<Producto> {
+    return this.httpClient.get<Producto>(`${this.API_URL}/itemproducto/` + itemId);
   }
 
-  delProducto(user_id: number, item_id): Observable<ItemCarrito> {
-    return this.httpClient.delete<ItemCarrito>(`${this.API_URL}/itemcarrito/` + user_id + '/itemcompra/' + item_id);
+  delProducto(userId: number, itemId): Observable<ItemCarrito> {
+    return this.httpClient.delete<ItemCarrito>(`${this.API_URL}/itemcarrito/` + userId + '/itemcompra/' + itemId);
   }
 
 }

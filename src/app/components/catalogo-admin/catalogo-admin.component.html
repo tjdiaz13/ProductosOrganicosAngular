@@ -1,17 +1,35 @@
-<h2>Catalogo</h2>
+<h2 class="tittle">Catálogo de productos</h2>
 <ul class = "itemcompra">
-  <li *ngFor="let itemcompra of itemsCompra">
+  <li *ngFor="let itemcompra of itemsCompra" class="card">
     <div *ngIf="itemcompra.visibilidad==true">
-      <div class="card"> <! -- routerLink = "/catalogo/productos/{{itemcompra.producto.id}}">
-        <img src="{{itemcompra.imagenUrl}}" alt="Imagen no disponible" style="width:100%">
+      <div (click)="selectedProduct(itemcompra)" class="card" routerLink = "/catalogo/">
+        <img src="{{itemcompra.imagenUrl}}" alt="Imagen no disponible" width="100px" height="100px">
         <div class="container">
           <div *ngIf="itemcompra.producto">
             <h4><b>{{itemcompra.producto.nombre}}</b></h4>
-            <p>{{itemcompra.producto.precio}}</p>
+            <p>Precio: {{itemcompra.producto.precio}} COP</p>
             <label>Nuevo precio:</label>
             <input type="number" #nprice>
             <button (click)="updatePrice({{itemCompra.producto.id}}, nprice.value)">Actualizar precio</button>
             <button (click)="remove({{itemCompra.id}})">Quitar del catálogo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+  <br>
+  <li *ngFor="let itemcompra of itemsCompra" class="card">
+    <div *ngIf="itemcompra.visibilidad==false">
+      <div (click)="selectedProduct(itemcompra)" class="card" routerLink = "/catalogo/">
+        <img src="{{itemcompra.imagenUrl}}" alt="Imagen no disponible" width="100px" height="100px">
+        <div class="container">
+          <div *ngIf="itemcompra.producto">
+            <h4><b>{{itemcompra.producto.nombre}}</b></h4>
+            <p>Precio: {{itemcompra.producto.precio}} COP</p>
+            <label>Nuevo precio:</label>
+            <input type="number" #nprice>
+            <button (click)="updatePrice({{itemCompra.producto.id}}, nprice.value)">Actualizar precio</button>
+            <button (click)="add({{itemCompra.id}})">Añadir al catálogo</button>
           </div>
         </div>
       </div>

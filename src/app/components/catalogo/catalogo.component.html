@@ -10,6 +10,7 @@
             <div *ngIf="itemcompra.producto">
               <h4><b>{{itemcompra.producto.nombre}}</b></h4>
               <p>Precio: {{itemcompra.producto.precio}} COP</p>
+              <p>Cantidades disponibles: {{ itemcompra.producto.cantidad }} Unidades</p>
             </div>
           </div>
         </div>
@@ -24,8 +25,15 @@
     <h2 class="tittle">{{icSeleccionado.producto.nombre}}</h2>
     <img class="image" src="{{icSeleccionado.imagenUrl}}" alt="Imagen no disponible">
     <p>Precio: {{icSeleccionado.producto.precio}} COP</p>
-    <label>Cantidad:  </label>
+    <p>Cantidad Seleccionada:  {{ cantidadSeleccionada }}<p>
+    <!--
     <input class="input" type="number"  [(ngModel)]="cantidad">
+    -->
+    <button (click)="cantidad_up()" class="btn btn-primary">+</button>
+    <button (click)="cantidad_down()" class="btn btn-primary ml-1">-</button>
+    <p>Subtotal: {{ subTotal }} COP</p>
+    <p>disponibilidad: {{ disponibilidad }}</p>
+    <span *ngIf="disponibilidad < 3"    class="badge badge-danger">agotandose+</span>
     <button class="button agregar-carrito" (click)="addToCart(icSeleccionado.id)">Agregar a Carrito</button>
   </div>
 </div>

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { CatalogoComponent } from './components/catalogo/catalogo.component';
+import { CatalogoAdminComponent } from './components/catalogo-admin/catalogo.component';
 import { AddClientComponent } from './components/add-client/add-client.component';
 import { CarritoItemCompraComponent } from './components/carrito-item-compra/carrito-item-compra.component';
 import { CarritoConfirmarCompraComponent } from './components/carrito-confirmar-compra/carrito-confirmar-compra.component';
@@ -11,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   { path: 'catalogo', component: CatalogoComponent },
+  { path: 'catalogoA', component: CatalogoAdminComponent },
   { path: 'carrito', component: CarritoItemCompraComponent },
   { path: 'carritoConfirmar', component: CarritoConfirmarCompraComponent },
   { path: 'add', component: AddClientComponent },

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CatalogoService } from '../../services/catalogo.service';
+import {AddProductService} from '../../services/add-product.service';
 import { Router, RouterModule } from '@angular/router';
 import {ItemCompra} from '../../models/itemCompra';
 import {Catalogo} from '../../models/catalogo';
@@ -31,6 +32,7 @@ export class CatalogoAdminComponent implements OnInit {
     this.catalogosService.getCatalogos().subscribe(
       catalogos => {
         const listadoCatalogos = catalogos;
+        this.catalogos = catalogos;
         this.getItemsCompra(listadoCatalogos[0].id);
       });
   }
@@ -68,14 +70,20 @@ export class CatalogoAdminComponent implements OnInit {
 
   unselect(): void{
     this.icSeleccionado = null;
-    this.router.navigate(['/catalogo']);
+    this.router.navigate(['/catalogoA']);
   }
 
-  remove(itemId: number): void{
-    //this.catalogosService.remove(itemId);
+  remove(itemC: ItemCompra): void{
+    this.catalogosService.remove(this.catalogos[0].id, itemC.id).subscribe(
+    item => {
+    this.itemsCompra[itemC.id - 1].visibilidad = false;
+    });
   }
 
-  add(itemId: number): void{
-    //this.catalogosService.add(itemId);
+  add(itemC: ItemCompra): void{
+    this.catalogosService.add(this.catalogos[0].id, itemC.id).subscribe(
+    item => {
+    this.itemsCompra[itemC.id - 1].visibilidad = true;
+    });
   }
 }

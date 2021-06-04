@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import {PaymentStorage} from '../../models/paymentStorage';
 
 @Component({
   selector: 'app-payment',
@@ -7,6 +8,9 @@ import {Router} from '@angular/router';
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
+
+  cityText: string;
+  addressText: string;
 
   constructor(
     private router: Router,
@@ -16,6 +20,16 @@ export class PaymentComponent implements OnInit {
   }
 
   goToSelectDate(): void{
-    this.router.navigate(['/select-date']);
+    if (!this.cityText || !this.addressText) {
+      window.alert('Diligencia la información requerida');
+    } else {
+      console.log('continua');
+      const paymentData = {
+        city : this.cityText,
+        address: this.addressText
+      };
+      sessionStorage.setItem('paymentData', JSON.stringify(paymentData));
+      this.router.navigate(['/select-date']);
+    }
   }
 }

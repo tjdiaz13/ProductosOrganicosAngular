@@ -43,10 +43,10 @@
         </div>
         <div class="row mt-4 d-flex align-items-center">
             <div class="col-sm-9 order-md-3 text-right">
-                <a href="payment" class="btn btn-success mb-4 btn-lg pl-5 pr-5">Ir a Pagar</a>
+                <button disabled="true" class="btn btn-success mb-4 btn-lg pl-5 pr-5" id="pay-button" (click)="goToPay()">Ir a Pagar</button>
             </div>
             <div class="col-sm-3 order-md-1 text-left">
-                <a href="catalogo" class="btn btn-success btn-block mb-4 btn-lg btn-continar-compra">Continuar Comprando</a>
+                <button class="btn btn-success btn-block mb-4 btn-lg btn-continar-compra" (click)="goToCatalog()">Continuar Comprando</button>
             </div>
         </div>
     </div>

@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SelectorOrderMethodPayComponent implements OnInit {
 
+  selectedMethod: string;
+  quotaNum: number;
+  cardNum: number;
   constructor() { }
 
   ngOnInit(): void {
+    this.selectedMethod = 'efectivo';
   }
 
+  goToPayment(): void {
+    if (this.selectedMethod !== 'efectivo' && !this.cardNum) {
+      window.alert('Diligencia el número de tarjeta');
+    } else if(this.selectedMethod === 'credito' && !this.quotaNum) {
+      window.alert('Diligencia el número de cuotas');
+    }
+  }
 }

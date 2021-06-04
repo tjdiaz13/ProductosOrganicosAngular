@@ -1,6 +1,7 @@
 import {Component } from '@angular/core';
 import { CarritoItemCompraService } from '../../services/carrito-item-compra.service';
 import {ItemCarrito} from '../../models/itemCarrito';
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-carrito-item-compra',
@@ -8,15 +9,15 @@ import {ItemCarrito} from '../../models/itemCarrito';
 })
 
 export class CarritoItemCompraComponent {
-
     itemsCarrito: ItemCarrito[];
     userID: number;
     precioTotal: number;
     status: string;
 
-    constructor( private carritoService: CarritoItemCompraService) {
-
-    }
+    constructor(
+      private carritoService: CarritoItemCompraService,
+      private router: Router
+    ) { }
 
     ngOnInit(): void {
         this.userID =  Number(localStorage.getItem('userId'));
@@ -44,6 +45,7 @@ export class CarritoItemCompraComponent {
       {
         this.itemsCarrito = items;
         this.calcularTotal(items);
+        this.enablePayButton();
         return;
       }
     }
@@ -63,4 +65,15 @@ export class CarritoItemCompraComponent {
         });
     }
 
+    goToPay():void {
+      this.router.navigate(['/payment']);
+    }
+
+    goToCatalog(): void {
+      this.router.navigate(['/catalogo']);
+    }
+
+    enablePayButton(): void {
+      (document.getElementById('pay-button') as HTMLInputElement).disabled = false;
+    }
 }

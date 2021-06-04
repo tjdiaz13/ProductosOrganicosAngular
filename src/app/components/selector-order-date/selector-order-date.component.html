@@ -1,0 +1,39 @@
+<div class="container ppal-container">
+  <h2 class="tittle ppal-tittle">Cuándo quieres recibir tu pedido:</h2>
+  <div class="container int-container">
+    <div>
+      <label class="secondary-tittle">Selecciona el día:</label>
+      <div class="row">
+        <div class="col-sm-4">
+          <button class="btn btn-outline-primary mb-4 btn-md pl-5 pr-5 margin-buttons">Hoy<br/>{{todayDate| date: 'dd-MM-yyyy'}}</button>
+        </div>
+        <div class="col-sm-4">
+          <button class="btn btn-outline-primary mb-4 btn-md pl-5 pr-5 margin-buttons">Mañana<br/>{{tomorrowDate| date: 'dd-MM-yyyy'}}</button>
+        </div>
+        <div class="col-sm-4">
+          <button class="btn btn-outline-primary mb-4 btn-md pl-5 pr-5 margin-buttons">Pasado Mañana<br/>{{pastTomorrowDate | date: 'dd-MM-yyyy'}}</button>
+        </div>
+      </div>
+    </div>
+    <div class="time-container">
+      <label class="secondary-tittle">Selecciona la hora:</label>
+      <div class="row">
+        <div class="col-sm-3 text-center">
+          <button class="btn btn-outline-primary mb-4 btn-md button-time">7:00 am - 10:00 am</button>
+        </div>
+        <div class="col-sm-3 text-center">
+          <button class="btn btn-outline-primary mb-4 btn-md button-time">10:00 am - 1:00 pm</button>
+        </div>
+        <div class="col-sm-3 text-center">
+          <button class="btn btn-outline-primary mb-4 btn-md button-time">1:00 pm - 4:00 pm</button>
+        </div>
+        <div class="col-sm-3 text-center">
+          <button class="btn btn-outline-primary mb-4 btn-md button-time">4:00 - 7:00 pm</button>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-success mb-4 btn-lg pl-5 pr-5 margin-buttons" (click)="goToPayMethod()">Continuar</button>
+    </div>
+  </div>
+</div>

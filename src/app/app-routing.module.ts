@@ -8,6 +8,9 @@ import { CarritoConfirmarCompraComponent } from './components/carrito-confirmar-
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { HomeComponent } from './components/home/home.component';
+import {PaymentComponent} from './components/payment/payment.component';
+import {SelectorOrderDateComponent} from "./components/selector-order-date/selector-order-date.component";
+import {SelectorOrderMethodPayComponent} from "./components/selector-order-method-pay/selector-order-method-pay.component";
 
 const routes: Routes = [
   { path: 'catalogo', component: CatalogoComponent },
@@ -17,6 +20,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'payment', component: PaymentComponent },
+  { path: 'select-date', component: SelectorOrderDateComponent },
+  { path: 'select-method', component: SelectorOrderMethodPayComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
 

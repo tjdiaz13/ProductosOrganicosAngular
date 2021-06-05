@@ -7,7 +7,7 @@
             <ul class="navbar-nav mr-auto">
 
                 <li class="nav-item" routerLinkActive="active">
-                    <a class="nav-link" routerLink="/home">Home</a>
+                    <a class="nav-link" routerLink="/home">Inicio</a>
                 </li>
 
                 <div *ngIf="!userNAME">
@@ -17,7 +17,7 @@
                 </div>
                 <div *ngIf="!userNAME">
                     <li class="nav-item" routerLinkActive="active">
-                        <a class="nav-link" routerLink="/login">Login</a>
+                        <a class="nav-link" routerLink="/login">Iniciar Sesión</a>
                     </li>
                 </div>
                 <div *ngIf="userNAME">
@@ -35,10 +35,10 @@
             </ul>
             <div *ngIf="userNAME">
                 <span class="navbar-text">
-    
+
                 {{ userNAME }}
-                
-                <button (click)="logout()" class="btn btn-success">Logout</button>
+
+                <button (click)="logout()" class="btn btn-success">Cerrar Sesión</button>
              </span>
             </div>
         </div>

@@ -16,6 +16,8 @@ export class CatalogoComponent implements OnInit {
   catalogos: Catalogo[];
   itemsCompra: ItemCompra[];
   icSeleccionado: ItemCompra;
+  cantidadSeleccionada = 0;
+  cantidadValida: number;
 
   constructor(
     private catalogosService: CatalogoService,
@@ -93,6 +95,60 @@ export class CatalogoComponent implements OnInit {
 
   add(itemId: number): void {
     //this.catalogosService.add(itemId);
+  }
+
+  get disponibilidad() {
+    //return 100 - this.cantidad;
+    this.cantidadValida = this.icSeleccionado.producto.cantidad - this.cantidadSeleccionada;
+
+    if (this.cantidadValida == 0) {
+      this.cantidadSeleccionada = 0;
+      return 0;
+    }
+    if (this.cantidadSeleccionada == 0) {
+      this.cantidadSeleccionada = 0;
+      return this.icSeleccionado.producto.cantidad;
+    }
+    if (this.cantidadSeleccionada < 0) {
+      this.cantidadSeleccionada = 0;
+      return this.icSeleccionado.producto.cantidad;
+    }
+
+    else {
+      return this.icSeleccionado.producto.cantidad - this.cantidadSeleccionada;
+    }
+  }
+
+  cantidad_up() {
+    //this.cantidadDisponible += 1
+    this.cantidadValida = this.cantidadSeleccionada += 1
+    //this.cantidadValida = this.icSeleccionado.producto.cantidad - this.cantidadSeleccionada;
+    if (this.cantidadValida == this.icSeleccionado.producto.cantidad) {
+      this.cantidadValida = this.icSeleccionado.producto.cantidad;
+    }
+  }
+
+  cantidad_down() {
+    //this.cantidadDisponible -= 1
+    this.cantidadValida = this.cantidadSeleccionada -= 1
+    if (this.cantidadValida == this.icSeleccionado.producto.cantidad) {
+      this.cantidadValida = this.icSeleccionado.producto.cantidad;
+    }
+
+    if (this.cantidadSeleccionada <= 0) {
+      this.cantidadSeleccionada = 0;
+    }
+  }
+
+  get cantidad_seleccionda() {
+
+
+    this.cantidadValida = this.cantidadSeleccionada - this.icSeleccionado.producto.cantidad;
+
+    if (this.cantidadValida <= 0) {
+      this.cantidadSeleccionada = 0;
+    }
+    return this.cantidadSeleccionada;
   }
 
 

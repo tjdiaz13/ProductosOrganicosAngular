@@ -33,10 +33,18 @@
             <div *ngIf="itemcompra.producto">
               <h4><b>{{itemcompra.producto.nombre}}</b></h4>
               <p>Precio: {{itemcompra.producto.precio}} COP</p>
+              <!--
               <p>Cantidad en Stock: {{itemcompra.producto.cantidad}}</p>
+              -->
+               <p>Cantidad Seleccionada:  {{ cantidadSeleccionada }}<p>
               <!--label>Nuevo precio:</label>
               <input type="number" #nprice>
               <button (click)="updatePrice({{itemCompra.producto.id}}, nprice.value)">Actualizar precio/button-->
+              <button (click)="cantidad_up()" class="btn btn-primary">+</button>
+              <button (click)="cantidad_down()" class="btn btn-primary ml-1">-</button>
+              <p>Subtotal: {{ subTotal }} COP</p>
+              <p>disponibilidad: {{ disponibilidad }}</p>
+              <span *ngIf="disponibilidad < 3"    class="badge badge-danger">agotandose+</span>
             </div>
           </div>
         </div>

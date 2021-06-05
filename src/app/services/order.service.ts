@@ -9,8 +9,8 @@ export class OrderService {
   constructor(
     private  http: HttpClient
   ) { }
-
-  API_URL  =  'http://localhost:8000';
+  API_URL  =  'https://mercado-organico-django.herokuapp.com';
+  //API_URL  =  'http://localhost:8000';
 
   createOrder(data: any): Promise<any> {
     const headers = { 'content-type': 'application/json'};

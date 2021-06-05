@@ -8,7 +8,7 @@
                         <tr>
                             <th style="width:60%">Numero De Compra</th>
                             <th style="width:12%">Fecha</th>
-                            <th style="width:10%">Recibo</th>
+                            <th style="width:10%">Metodo de Pago</th>
                             <th style="width:16%">Total</th>
                         </tr>
                     </thead>
@@ -22,14 +22,14 @@
                                 </div>
                             </td>
                             <td data-th="Date">{{ordencarrito.fecha_compra}}</td>
-                            <td data-th="Receipt">
+                            <td data-th="Metodo de Pago">
+                                {{ordencarrito.metodo_pago}}
+                            </td>
+                            <td data-th="Price">
                                 {{ordencarrito.carrito}}
                             </td>
-                            <td data-th="Address">
-                                {{ordencarrito.carrito.precio_total}}
-                            </td>
                             <td>
-                                <button type="button" name="review_orden" class="btn btn-primary btn-xs" (click)="revCarrito(ordencarrito.id)">Review</button>
+                                <button type="button" name="review_orden" class="btn btn-primary btn-xs" (click)="revCarrito(ordencarrito.id)">Resumen</button>
                             </td>
                             <td>
                                 <button type="button" name="descargar_orden" class="btn btn-danger btn-xs" (click)="desCarrito(ordencarrito.id)">Descargar</button>

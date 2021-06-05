@@ -1,41 +1,42 @@
 <div class="container ppal-container">
+  <Button  class="btn btn-success" routerLink = "/payment">Volver</Button>
   <h2 class="tittle ppal-tittle">Cuándo quieres recibir tu pedido:</h2>
   <div class="container int-container">
     <div>
       <label class="secondary-tittle">Selecciona el día:</label>
       <div class="row">
         <div class="col-sm-4">
-          <button class="btn btn-outline-primary mb-4 btn-md pl-5 pr-5 margin-buttons"
-                  (click)="selectDate(todayDate)">Hoy<br/>{{todayDate| date: 'dd-MM-yyyy'}}</button>
+          <button class="btn btn-date-fill mb-4 btn-md pl-5 pr-5 margin-buttons" name="btns-date" id="bt-date1"
+                  (click)="selectDate(todayDate, $event.target)">Hoy<br/>{{todayDate| date: 'dd-MM-yyyy'}}</button>
         </div>
         <div class="col-sm-4">
-          <button class="btn btn-outline-primary mb-4 btn-md pl-5 pr-5 margin-buttons"
-                  (click)="selectDate(tomorrowDate)">Mañana<br/>{{tomorrowDate| date: 'dd-MM-yyyy'}}</button>
+          <button class="btn btn-date-fill mb-4 btn-md pl-5 pr-5 margin-buttons" name="btns-date" id="bt-date2"
+                  (click)="selectDate(tomorrowDate, $event.target)">Mañana<br/>{{tomorrowDate| date: 'dd-MM-yyyy'}}</button>
         </div>
         <div class="col-sm-4">
-          <button class="btn btn-outline-primary mb-4 btn-md pl-5 pr-5 margin-buttons"
-                  (click)="selectDate(pastTomorrowDate)">Pasado Mañana<br/>{{pastTomorrowDate | date: 'dd-MM-yyyy'}}</button>
+          <button class="btn btn-date-fill mb-4 btn-md pl-5 pr-5 margin-buttons" name="btns-date" id="bt-date3"
+                  (click)="selectDate(pastTomorrowDate, $event.target)">Pasado Mañana<br/>{{pastTomorrowDate | date: 'dd-MM-yyyy'}}</button>
         </div>
       </div>
     </div>
     <div class="time-container">
       <label class="secondary-tittle">Selecciona la hora:</label>
-      <div class="row">
+      <div class="row" style="padding-top: 3%">
         <div class="col-sm-3 text-center">
-          <button class="btn btn-outline-primary mb-4 btn-md button-time"
-                  (click)="selectHour('7:00-10:00')">7:00 am - 10:00 am</button>
+          <button class="btn btn-date-fill mb-4 btn-md button-time" name="btns-time" id="bt-time1"
+                  (click)="selectHour('7:00-10:00', $event.target)">7:00 am - 10:00 am</button>
         </div>
         <div class="col-sm-3 text-center">
-          <button class="btn btn-outline-primary mb-4 btn-md button-time"
-                  (click)="selectHour('10:00-1:00')">10:00 am - 1:00 pm</button>
+          <button class="btn btn-date-fill mb-4 btn-md button-time" name="btns-time" id="bt-time2"
+                  (click)="selectHour('10:00-13:00', $event.target)">10:00 am - 1:00 pm</button>
         </div>
         <div class="col-sm-3 text-center">
-          <button class="btn btn-outline-primary mb-4 btn-md button-time"
-                  (click)="selectHour('1:00-4:00')">1:00 pm - 4:00 pm</button>
+          <button class="btn btn-date-fill mb-4 btn-md button-time" name="btns-time" id="bt-time3"
+                  (click)="selectHour('13:00-16:00', $event.target)">1:00 pm - 4:00 pm</button>
         </div>
         <div class="col-sm-3 text-center">
-          <button class="btn btn-outline-primary mb-4 btn-md button-time"
-                  (click)="selectHour('4:00-7:00')">4:00 - 7:00 pm</button>
+          <button class="btn btn-date-fill mb-4 btn-md button-time" name="btns-time" id="bt-time4"
+                  (click)="selectHour('16:00-19:00', $event.target)">4:00 - 7:00 pm</button>
         </div>
       </div>
     </div>

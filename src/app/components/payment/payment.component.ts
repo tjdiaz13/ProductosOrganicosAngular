@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import * as moment from 'moment';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-payment',
@@ -20,9 +20,9 @@ export class PaymentComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  goToSelectDate(): void{
+  goToSelectDate(): void {
     if (!this.cityText || !this.addressText) {
-      window.alert('Diligencia la información requerida');
+      this.showModal();
     } else {
       console.log('continua');
       const paymentData = {
@@ -32,5 +32,13 @@ export class PaymentComponent implements OnInit {
       sessionStorage.setItem('paymentData', JSON.stringify(paymentData));
       this.router.navigate(['/select-date']);
     }
+  }
+
+  showModal(): void {
+    Swal.fire(
+      'Datos Incompletos!',
+      'Diligencia la información requerida',
+      'warning'
+    );
   }
 }

@@ -1,10 +1,11 @@
 <div class="container ppal-container">
+  <Button  class="btn btn-success" routerLink = "/carrito">Volver</Button>
   <h2 class="tittle" style="text-align: center">Enviaremos tu compra a:</h2>
   <div class="container internal-container">
     <label class="secondary-tittle">Ingresa tu dirección de domicilio</label>
     <div class="row">
       <div class="col-sm-6">
-        <input class="form-control-lg input-lg input-pay" id="city" type="text" placeholder="Ciudad" [(ngModel)]="cityText">
+        <input class="form-control-lg input-lg input-pay" id="city" type="text" appAlphabetOnly placeholder="Ciudad" [(ngModel)]="cityText">
       </div>
       <div class="col-sm-6">
         <input class="form-control-lg input-lg input-pay" id="address" type="text" placeholder="Dirección" [(ngModel)]="addressText">

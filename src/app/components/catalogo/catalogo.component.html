@@ -63,7 +63,7 @@
     <button (click)="cantidad_down()" class="btn btn-primary ml-1">-</button>
     <p>Subtotal: {{ subTotal }} COP</p>
     <p>Disponibilidad: {{ disponibilidad }}</p>
-    <span *ngIf="disponibilidad < 3"    class="badge badge-danger">agotandose+</span>
+    <span *ngIf="disponibilidad < 3"    class="badge badge-danger">Agotándose+</span>
     <button class="button agregar-carrito" (click)="addToCart(icSeleccionado)">Agregar a Carrito</button>
   </div>
 </div>

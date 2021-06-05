@@ -8,5 +8,5 @@ export class Orden {
    metodo_pago: string; 
    numero_tarjeta: string;
    numero_cuota: string; 
-   carrito: Carrito[];
+   carrito: string;
 }

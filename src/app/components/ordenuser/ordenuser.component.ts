@@ -37,6 +37,7 @@ export class OrdenuserComponent implements OnInit {
   }
 
   revCarrito(Id: number): void{
+    
   }
 
   async desCarrito(Id: number): Promise<any>{
@@ -44,11 +45,11 @@ export class OrdenuserComponent implements OnInit {
     
     this.ordenID = Id; 
     const orden = await this.ordenCompra.getOrderOrden(this.ordenID);
-    this.ordenCarrito = orden;
     
     const doc = new jsPDF();
-    doc.text(orden.toString() + 'Hello world!', 10, 10);
-    doc.save('hello-world.pdf');
+    doc.text('Numero de Orden: ' + orden[0].id + '', 10, 10);
+    doc.text('Fecha de la Orden: '+ orden[0].fecha_compra + '', 10, 20);
+    doc.save('Reporte' + orden[0].id + 'compra.pdf');
   }
 
 }

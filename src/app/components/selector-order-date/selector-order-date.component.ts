@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-selector-order-date',
@@ -27,7 +29,7 @@ export class SelectorOrderDateComponent implements OnInit {
 
   goToPayMethod(): void{
     if (!this.delivDate || !this.delivTime) {
-      window.alert('Selecciona la Fecha y Hora de entrega');
+      this.showModal();
     } else {
       const storage = sessionStorage.getItem('paymentData');
       const storageJson = JSON.parse(storage);
@@ -38,10 +40,29 @@ export class SelectorOrderDateComponent implements OnInit {
     }
   }
 
-  selectHour(value): void {
+  selectHour(value, event: any): void {
     this.delivTime = value;
+    const defaultClass = 'btn btn-date-fill mb-4 btn-md pl-5 pr-5 margin-buttons';
+    const selectedClass = 'btn btn-primary mb-4 btn-md pl-5 pr-5 margin-buttons';
+    const buttonDate = document.getElementsByName('btns-time');
+    buttonDate.forEach(sub => sub.className = defaultClass);
+    (document.getElementById(event.id) as HTMLInputElement).className = selectedClass;
   }
-  selectDate(value: any): void {
+
+  selectDate(value: any, event: any): void {
     this.delivDate = value;
+    const defaultClass = 'btn btn-date-fill mb-4 btn-md pl-5 pr-5 margin-buttons';
+    const selectedClass = 'btn btn-primary mb-4 btn-md pl-5 pr-5 margin-buttons';
+    const buttonDate = document.getElementsByName('btns-date');
+    buttonDate.forEach(sub => sub.className = defaultClass);
+    (document.getElementById(event.id) as HTMLInputElement).className = selectedClass;
+  }
+
+  showModal(): void {
+    Swal.fire(
+      'Datos Incompletos!',
+      'Selecciona la Fecha y Hora de entrega',
+      'warning'
+    );
   }
 }

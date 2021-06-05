@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {OrderService} from '../../services/order.service';
 import * as moment from 'moment';
 import {Router} from "@angular/router";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-selector-order-method-pay',
@@ -28,14 +29,14 @@ export class SelectorOrderMethodPayComponent implements OnInit {
   async goToPayment(): Promise<any> {
     this.cleanInputs();
     if (this.selectedMethod !== 'efectivo' && !this.cardNum) {
-      window.alert('Diligencia el número de tarjeta');
+      this.showModal('Datos Incompletos!', 'Diligencia el número de tarjeta', 'warning');
     } else if (this.selectedMethod === 'credito' && !this.quotaNum) {
-      window.alert('Diligencia el número de cuotas');
+      this.showModal('Datos Incompletos!', 'Diligencia el número de cuotas', 'warning');
     } else {
       const response = await this.callOrderService();
       console.log(response);
       if (response) {
-        window.alert('Su compra ha sido realizada con éxito');
+        this.showModal('Felicitaciones', 'Su compra ha sido realizada con éxito', 'success');
         this.router.navigate(['/home']);
       }
     }
@@ -66,11 +67,19 @@ export class SelectorOrderMethodPayComponent implements OnInit {
         pay_method: this.selectedMethod,
         card_number: this.cardNum,
         quota: this.quotaNum,
-        user_id: userId
+        user_id: 1
       };
       return await this.orderService.createOrder(data);
     } catch (e) {
-      window.alert('Error realizando pago');
+      this.showModal('Ha ocurrido un error', 'Error realizando pago', 'error');
     }
+  }
+
+  showModal(tittle: string, message: string, icon: any): void {
+    Swal.fire(
+      tittle,
+      message,
+      icon
+    );
   }
 }

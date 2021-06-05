@@ -3,7 +3,7 @@
 }
 
 .ppal-container{
-  padding: 7%;
+  padding: 5% 7% 7% 7%;
 }
 
 .button-time {
@@ -28,15 +28,15 @@
   padding-top: 5%;
 }
 
-/*
-!** normal style **!
-.btn{
-    background: #ccc;
+/** normal style **/
+.btn-date-fill{
+  background: #dae3f3;
+  text-decoration-color: black;
+  border-color: black;
 }
 
-!** on active **!
+/** on active **/
 
-.btn:focus{
+.btn-selected {
     background: red;
 }
-*/

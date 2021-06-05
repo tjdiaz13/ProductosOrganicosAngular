@@ -25,7 +25,7 @@ export class OrdenuserComponent implements OnInit {
   status: string;
 
   constructor(
-    private router: Router, 
+    private router: Router,
     private carritoService: CarritoItemCompraService,
     private ordenCompra: OrdenuserService
     ) { }
@@ -33,11 +33,12 @@ export class OrdenuserComponent implements OnInit {
   ngOnInit(): void {
     this.userID =  Number(localStorage.getItem('userId'));
     this.getOrden();
+    this.getItemsCarrito();
   }
 
   async getOrden(): Promise<any>{
     const orden = await this.ordenCompra.getOrderUser(this.userID);
-    this.ordenCarrito = orden; 
+    this.ordenCarrito = orden;
   }
 
   revCarrito(Id: number): void{
@@ -45,14 +46,11 @@ export class OrdenuserComponent implements OnInit {
   }
 
   async desCarrito(Id: number): Promise<any>{
-    
-    
-    this.ordenID = Id; 
-    const orden = await this.ordenCompra.getOrderOrden(this.ordenID);
-    await this.getItemsCarrito();
-    console.log(this.itemsCarrito);
 
-    
+
+    this.ordenID = Id;
+    const orden = await this.ordenCompra.getOrderOrden(this.ordenID);
+
     const doc = new jsPDF();
     doc.text('Resumen De Compra' + '', 80, 10);
     doc.text('Numero de Orden: ' + orden[0].id + '', 10, 20);
@@ -62,16 +60,16 @@ export class OrdenuserComponent implements OnInit {
     doc.text('Informacion de los productos de la compra: ', 10, 60);
     doc.text('_______________________________________________________________', 10, 70);
     let total = 100;
-    let ittotal = 1; 
+    let ittotal = 1;
     this.itemsCarrito.forEach((item) => {
       doc.text('Producto'+ ittotal + ': ' + item.producto.nombre + '', 10, total);
       doc.text('Cantidad'+ ': ' + item.cantidad + '', 90, total);
       doc.text('Precio'+ ': ' + item.producto.precio + '   COP', 130, total);
       total = total + 10;
-      ittotal = ittotal + 1; 
+      ittotal = ittotal + 1;
     });
     doc.text('_______________________________________________________________' + '', 10, total+20);
-    doc.text('Total de la compra: '+ orden[0].carrito + '', 10, total+30);
+    doc.text('Total de la compra: '+ orden[0].precio_total + '', 10, total+30);
     doc.save('Reporte' + orden[0].id + 'compra.pdf');
   }
 

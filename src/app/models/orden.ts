@@ -5,8 +5,9 @@ export class Orden {
    fecha_compra: string;
    fecha_entrega: string;
    direccion_entrega: string;
-   metodo_pago: string; 
+   metodo_pago: string;
    numero_tarjeta: string;
-   numero_cuota: string; 
+   numero_cuota: string;
    carrito: string;
+   precio_total: string;
 }

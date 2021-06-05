@@ -1,0 +1,59 @@
+.catalogo {
+  margin: 25px 50px 75px 100px;
+}
+
+.card {
+  list-style-type: none;
+}
+
+.button {
+  background-color: #04AA6D; /* Green */
+  border: none;
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+
+.title {
+  text-align: center;
+  padding: 15px;
+}
+
+.image {
+  display: flex;
+  margin: auto;
+  width: 100px;
+  height: 100px;
+}
+
+.ver-carrito {
+  margin-left: auto;
+  display: block;
+}
+
+.input {
+  width: 100px;
+}
+
+.agregar-carrito {
+  display: block;
+  margin-top: 20px;
+}
+
+.subtitle {
+  text-align: left;
+  padding: 15px;
+}

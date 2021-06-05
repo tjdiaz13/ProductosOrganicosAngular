@@ -87,4 +87,12 @@ export class CatalogoComponent implements OnInit {
       window.alert('Su producto ha sido agregado al carrito de compras!');
     }
   }
+
+  remove(itemId: number): void{
+    //this.catalogosService.remove(itemId);
+  }
+
+  add(itemId: number): void{
+    //this.catalogosService.add(itemId);
+  }
 }

@@ -20,6 +20,7 @@ import { LogoutService } from './services/logout.service';
 // componentes
 import { AppComponent } from './app.component';
 import { CatalogoComponent } from './components/catalogo/catalogo.component';
+import { CatalogoAdminComponent } from './components/catalogo-admin/catalogo.component';
 import { AddClientComponent } from './components/add-client/add-client.component';
 import { CarritoItemCompraComponent } from './components/carrito-item-compra/carrito-item-compra.component';
 import { FormsModule } from '@angular/forms';
@@ -39,6 +40,7 @@ import { AlphabetOnlyDirective } from './components/payment/alphabet-only.direct
   declarations: [
     AppComponent,
     CatalogoComponent,
+    CatalogoAdminComponent,
     CarritoItemCompraComponent,
     AddClientComponent,
     CarritoConfirmarCompraComponent,

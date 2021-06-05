@@ -1,27 +1,38 @@
 import { Component, OnInit } from '@angular/core';
-import { Catalogo } from '../../models/catalogo';
-import { ItemCompra } from '../../models/itemcompra';
 import { CatalogoService } from '../../services/catalogo.service';
+import {AddProductService} from '../../services/add-product.service';
+import { Router, RouterModule } from '@angular/router';
+import {ItemCompra} from '../../models/itemCompra';
+import {Catalogo} from '../../models/catalogo';
+
 
 @Component({
-  selector: 'app-catalogo',
+  selector: 'app-catalogo-admin',
   templateUrl: './catalogo-admin.component.html',
   styleUrls: ['./catalogo.component.scss']
 })
 export class CatalogoAdminComponent implements OnInit {
-
+  cantidad: number;
   catalogos: Catalogo[];
   itemsCompra: ItemCompra[];
-  constructor(private catalogosService: CatalogoService) { }
+  icSeleccionado: ItemCompra;
+
+  constructor(
+    private catalogosService: CatalogoService,
+    private router: Router,
+    private addProductService: AddProductService
+    ) { }
 
   ngOnInit(): void {
+    console.log(localStorage.getItem('token'));
     this.getCatalogos();
   }
 
-  getCatalogos(){
+  getCatalogos(): void{
     this.catalogosService.getCatalogos().subscribe(
       catalogos => {
         const listadoCatalogos = catalogos;
+        this.catalogos = catalogos;
         this.getItemsCompra(listadoCatalogos[0].id);
       });
   }
@@ -37,12 +48,10 @@ export class CatalogoAdminComponent implements OnInit {
       if (index < items.length)
       {
         const item = items[index];
-        console.log('test4', item);
         this.catalogosService.getProducto(catalogoId, item.id).subscribe(
         producto => {
           item.producto = producto[0];
           items[index] = item;
-          console.log('test3', items[index]);
           index++;
           this.getProductos(catalogoId, items, index);
         });
@@ -55,11 +64,26 @@ export class CatalogoAdminComponent implements OnInit {
       }
   }
 
-  updatePrice(productId: number, precio:number): void{
-    // this.catalogosService.updatePrice(productId, precio);
+  selectedProduct(ic: ItemCompra): void{
+    this.icSeleccionado = ic;
   }
 
-  remove(itemCompraId: number): void{
-    // this.catalogosService.remove(itemCompraId);
+  unselect(): void{
+    this.icSeleccionado = null;
+    this.router.navigate(['/catalogoA']);
+  }
+
+  remove(itemC: ItemCompra): void{
+    this.catalogosService.remove(this.catalogos[0].id, itemC.id).subscribe(
+    item => {
+    this.itemsCompra[itemC.id - 1].visibilidad = false;
+    });
+  }
+
+  add(itemC: ItemCompra): void{
+    this.catalogosService.add(this.catalogos[0].id, itemC.id).subscribe(
+    item => {
+    this.itemsCompra[itemC.id - 1].visibilidad = true;
+    });
   }
 }

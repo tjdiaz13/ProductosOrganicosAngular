@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 const baseUrl = 'https://mercado-organico-django.herokuapp.com/registerClient/';
-//const baseUrl = 'http://localhost:8000/signout';
+// const baseUrl = 'http://localhost:8000/registerClient/';
 
 @Injectable({
   providedIn: 'root'

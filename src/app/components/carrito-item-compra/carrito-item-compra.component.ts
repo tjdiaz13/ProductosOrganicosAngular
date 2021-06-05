@@ -1,7 +1,7 @@
 import {Component } from '@angular/core';
 import { CarritoItemCompraService } from '../../services/carrito-item-compra.service';
 import {ItemCarrito} from '../../models/itemCarrito';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-carrito-item-compra',
@@ -65,7 +65,8 @@ export class CarritoItemCompraComponent {
         });
     }
 
-    goToPay():void {
+    goToPay(): void {
+      sessionStorage.setItem('precioTotal', this.precioTotal.toString());
       this.router.navigate(['/payment']);
     }
 

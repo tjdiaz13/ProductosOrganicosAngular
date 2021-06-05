@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {OrderService} from '../../services/order.service';
 import * as moment from 'moment';
-import {Router} from "@angular/router";
-import Swal from "sweetalert2";
+import {Router} from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-selector-order-method-pay',
@@ -37,7 +37,7 @@ export class SelectorOrderMethodPayComponent implements OnInit {
       console.log(response);
       if (response) {
         this.showModal('Felicitaciones', 'Su compra ha sido realizada con éxito', 'success');
-        this.router.navigate(['/home']);
+        this.router.navigate(['/orden']);
       }
     }
   }
@@ -57,6 +57,7 @@ export class SelectorOrderMethodPayComponent implements OnInit {
       const storageJson = JSON.parse(storage);
       const now = moment().format('YYYY-MM-DD hh:mm:ss');
       const userId = Number(localStorage.getItem('userId'));
+      const precioTotal = sessionStorage.getItem('precioTotal');
 
       const data = {
         shopping_date: now,
@@ -67,7 +68,8 @@ export class SelectorOrderMethodPayComponent implements OnInit {
         pay_method: this.selectedMethod,
         card_number: this.cardNum,
         quota: this.quotaNum,
-        user_id: 1
+        total_price: precioTotal,
+        user_id: userId
       };
       return await this.orderService.createOrder(data);
     } catch (e) {

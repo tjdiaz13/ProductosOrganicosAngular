@@ -95,4 +95,6 @@ export class CatalogoComponent implements OnInit {
     //this.catalogosService.add(itemId);
   }
 
+
+
 }

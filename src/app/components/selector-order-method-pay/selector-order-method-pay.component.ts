@@ -37,7 +37,7 @@ export class SelectorOrderMethodPayComponent implements OnInit {
       console.log(response);
       if (response) {
         this.showModal('Felicitaciones', 'Su compra ha sido realizada con éxito', 'success');
-        this.router.navigate(['/home']);
+        this.router.navigate(['/orden']);
       }
     }
   }

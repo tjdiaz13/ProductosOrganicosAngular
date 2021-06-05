@@ -18,6 +18,7 @@ export class OrderService {
     return new Promise( (resolve, reject) => {
       this.http.post(`${this.API_URL}/orden/`,
         {
+          precio_total: data.total_price,
           fecha_compra: data.shopping_date,
           fecha_entrega: data.delivery_date,
           hora_entrega: data.delivery_time,

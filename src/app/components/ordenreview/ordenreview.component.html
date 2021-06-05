@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row w-100">
             <div class="col-lg-12 col-md-12 col-12">
-                <h3 class="display-5 mb-2 text-center">Carrito de Compra</h3>
+                <h3 class="display-5 mb-2 text-center">Orden de compra</h3>
                 <table id="shoppingCart" class="table table-condensed table-responsive">
                     <thead>
                         <tr>
@@ -28,9 +28,6 @@
                             <td data-th="Quantity">
                                 {{itemcarrito.cantidad}}
                             </td>
-                            <td>
-                                <button type="button" name="remove_product" class="btn btn-danger btn-xs" (click)="delToCart(itemcarrito.item_compra_id)">Eliminar</button>
-                            </td>
 
                         </tr>
                     </tbody>
@@ -39,14 +36,6 @@
                     <h4>Subtotal:</h4>
                     <h1>{{precioTotal}}</h1>
                 </div>
-            </div>
-        </div>
-        <div class="row mt-4 d-flex align-items-center">
-            <div class="col-sm-9 order-md-3 text-right">
-                <button disabled="true" class="btn btn-success mb-4 btn-lg pl-5 pr-5" id="pay-button" (click)="goToPay()">Ir a Pagar</button>
-            </div>
-            <div class="col-sm-3 order-md-1 text-left">
-                <button class="btn btn-success btn-block mb-4 btn-lg btn-continar-compra" (click)="goToCatalog()">Continuar Comprando</button>
             </div>
         </div>
     </div>

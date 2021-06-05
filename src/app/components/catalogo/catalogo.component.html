@@ -15,9 +15,11 @@
               <!--<label>Nuevo precio:</label>
               <input type="number" #nprice>
               <button (click)="updatePrice({{itemCompra.producto.id}}, nprice.value)">Actualizar precio/button-->
-              <button (click)="remove(itemcompra)">Quitar del catálogo</button>
             </div>
           </div>
+        </div>
+        <div *ngIf="itemcompra.producto">
+          <button (click)="remove(itemcompra)">Quitar del catálogo</button>
         </div>
       </div>
     </li>
@@ -35,9 +37,11 @@
               <!--label>Nuevo precio:</label>
               <input type="number" #nprice>
               <button (click)="updatePrice({{itemCompra.producto.id}}, nprice.value)">Actualizar precio/button-->
-              <button (click)="add(itemcompra)">Añadir al catálogo</button>
             </div>
           </div>
+        </div>
+        <div *ngIf="itemcompra.producto">
+          <button (click)="add(itemcompra)">Añadir al catálogo</button>
         </div>
       </div>
     </li>
@@ -45,9 +49,9 @@
 </div>
 <div *ngIf="icSeleccionado">
   <Button  class="button" (click)="unselect()">Volver al catalogo</Button>
-  <h2 class="tittle">Producto Seleccionado</h2>
+  <h2 class="title">Producto Seleccionado</h2>
   <div class="center">
-    <h2 class="tittle">{{icSeleccionado.producto.nombre}}</h2>
+    <h2 class="title">{{icSeleccionado.producto.nombre}}</h2>
     <img class="image" src="{{icSeleccionado.imagenUrl}}" alt="Imagen no disponible">
     <p>Precio: {{icSeleccionado.producto.precio}} COP</p>
     <label>Cantidad:  </label>

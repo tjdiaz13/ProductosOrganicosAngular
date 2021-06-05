@@ -32,6 +32,7 @@ export class CatalogoComponent implements OnInit {
     this.catalogosService.getCatalogos().subscribe(
       catalogos => {
         const listadoCatalogos = catalogos;
+        this.catalogos = catalogos;
         this.getItemsCompra(listadoCatalogos[0].id);
       });
   }

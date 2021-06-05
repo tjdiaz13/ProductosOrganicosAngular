@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {PaymentStorage} from '../../models/paymentStorage';
+import * as moment from 'moment';
+
 
 @Component({
   selector: 'app-payment',

@@ -2,18 +2,19 @@ import { Injectable } from '@angular/core';
 import { Catalogo } from '../models/catalogo';
 import { Producto } from '../models/producto';
 import { Observable, of, pipe } from 'rxjs';
-import { HttpClient } from  '@angular/common/http';
-import {ItemCompra} from '../models/itemCompra';
+import { HttpClient } from '@angular/common/http';
+import { ItemCompra } from '../models/itemCompra';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CatalogoService {
 
-  constructor(private  httpClient: HttpClient
-    ) { }
+  constructor(private httpClient: HttpClient
+  ) { }
 
-  API_URL  =  'https://mercado-organico-django.herokuapp.com';
+  API_URL = 'https://mercado-organico-django.herokuapp.com';
+  // API_URL = 'http://localhost:8000';
 
   private catalogos: Array<Catalogo>;
 
@@ -35,4 +36,11 @@ export class CatalogoService {
     return this.httpClient.get<Producto>(`${this.API_URL}/catalogo/` + catalogoId + '/itemproducto/' + itemId);
   }
 
+  add(catalogoId: number, itemId: number): Observable<ItemCompra> {
+    return this.httpClient.get<ItemCompra>(`${this.API_URL}/catalogo/` + catalogoId + '/itemproducto/' + itemId + '/add');
+  }
+
+  remove(catalogoId: number, itemId: number): Observable<ItemCompra> {
+    return this.httpClient.get<ItemCompra>(`${this.API_URL}/catalogo/` + catalogoId + '/itemproducto/' + itemId + '/remove');
+  }
 }

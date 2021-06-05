@@ -8,7 +8,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(){
+  login(): void{
     return this.http.get();
   }
 }

@@ -87,15 +87,15 @@ export class CatalogoComponent implements OnInit {
       window.alert('Su producto ha sido agregado al carrito de compras!');
     }
   }
-<<<<<<< HEAD
 
-  remove(itemId: number): void{
+  remove(itemId: number): void {
     //this.catalogosService.remove(itemId);
   }
 
-  add(itemId: number): void{
+  add(itemId: number): void {
     //this.catalogosService.add(itemId);
-=======
+  }
+
   get subTotal() {
     //return this.cantidad * this.icSeleccionado.producto.precio;
     if (this.cantidadSeleccionada <= 0) {
@@ -163,6 +163,5 @@ export class CatalogoComponent implements OnInit {
       this.cantidadSeleccionada = 0;
     }
     return this.cantidadSeleccionada;
->>>>>>> GDD-125-Angular
   }
 }

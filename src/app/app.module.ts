@@ -29,6 +29,9 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { OrdenuserComponent } from './components/ordenuser/ordenuser.component';
+import { OrdenreviewComponent } from './components/ordenreview/ordenreview.component';
+
 
 
 @NgModule({
@@ -41,7 +44,9 @@ import { LogoutComponent } from './components/logout/logout.component';
     NavbarComponent,
     HomeComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    OrdenuserComponent,
+    OrdenreviewComponent
   ],
   imports: [
     BrowserModule,

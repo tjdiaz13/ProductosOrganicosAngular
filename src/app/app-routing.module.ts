@@ -8,6 +8,9 @@ import { CarritoConfirmarCompraComponent } from './components/carrito-confirmar-
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { HomeComponent } from './components/home/home.component';
+import { OrdenuserComponent } from './components/ordenuser/ordenuser.component';
+import { OrdenreviewComponent } from './components/ordenreview/ordenreview.component';
+
 
 const routes: Routes = [
   { path: 'catalogo', component: CatalogoComponent },
@@ -17,6 +20,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'orden', component: OrdenuserComponent },
+  { path: 'ordenreview', component: OrdenreviewComponent },
   { path: '**', pathMatch: 'full', redirectTo: 'home'}
 ];
 

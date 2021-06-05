@@ -30,6 +30,12 @@
                         <a class="nav-link" routerLink="/carrito">Carrito</a>
                     </li>
                 </div>
+                <div *ngIf="userNAME">
+                    <li class="nav-item" routerLinkActive="active">
+                        <a class="nav-link" routerLink="/orden">Historial de Compras</a>
+                    </li>
+                </div>
+
 
 
             </ul>

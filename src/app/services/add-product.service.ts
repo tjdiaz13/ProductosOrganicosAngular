@@ -9,6 +9,7 @@ export class AddProductService {
   constructor(private  http: HttpClient) { }
 
   API_URL  =  'https://mercado-organico-django.herokuapp.com';
+  // API_URL  =  'http://localhost:8000';
 
    getShoppingCart(userId: number): Promise<any> {
     return new Promise( (resolve, reject) => {

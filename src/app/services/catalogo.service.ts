@@ -13,13 +13,8 @@ export class CatalogoService {
   constructor(private  httpClient: HttpClient
     ) { }
 
-<<<<<<< HEAD
   //API_URL  =  'https://mercado-organico-django.herokuapp.com';
-  API_URL  =  'http://127.0.0.1:8000';
-=======
-  API_URL  =  'https://mercado-organico-django.herokuapp.com';
-  //API_URL  =  'http://localhost:8000';
->>>>>>> dev
+  API_URL  =  'http://localhost:8000';
 
   private catalogos: Array<Catalogo>;
 

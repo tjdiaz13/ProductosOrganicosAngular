@@ -30,16 +30,12 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
-<<<<<<< HEAD
 import { OrdenuserComponent } from './components/ordenuser/ordenuser.component';
 import { OrdenreviewComponent } from './components/ordenreview/ordenreview.component';
-
-=======
 import { PaymentComponent } from './components/payment/payment.component';
 import { SelectorOrderDateComponent } from './components/selector-order-date/selector-order-date.component';
 import { SelectorOrderMethodPayComponent } from './components/selector-order-method-pay/selector-order-method-pay.component';
 import { AlphabetOnlyDirective } from './components/payment/alphabet-only.directive';
->>>>>>> dev
 
 
 @NgModule({
@@ -54,15 +50,12 @@ import { AlphabetOnlyDirective } from './components/payment/alphabet-only.direct
     HomeComponent,
     LoginComponent,
     LogoutComponent,
-<<<<<<< HEAD
     OrdenuserComponent,
-    OrdenreviewComponent
-=======
+    OrdenreviewComponent,
     PaymentComponent,
     SelectorOrderDateComponent,
     SelectorOrderMethodPayComponent,
     AlphabetOnlyDirective
->>>>>>> dev
   ],
   imports: [
     BrowserModule,

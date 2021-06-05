@@ -88,11 +88,17 @@ export class CatalogoComponent implements OnInit {
     }
   }
 
-  remove(itemId: number): void{
-    //this.catalogosService.remove(itemId);
+  remove(itemC: ItemCompra): void{
+    this.catalogosService.remove(this.catalogos[0].id, itemC.id).subscribe(
+    item => {
+    this.itemsCompra[itemC.id - 1].visibilidad = false;
+    });
   }
 
-  add(itemId: number): void{
-    //this.catalogosService.add(itemId);
+  add(itemC: ItemCompra): void{
+    this.catalogosService.add(this.catalogos[0].id, itemC.id).subscribe(
+    item => {
+    this.itemsCompra[itemC.id - 1].visibilidad = true;
+    });
   }
 }

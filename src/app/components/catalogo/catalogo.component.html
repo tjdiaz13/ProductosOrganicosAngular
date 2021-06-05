@@ -19,40 +19,36 @@
           </div>
         </div>
         <div *ngIf="itemcompra.producto">
-          <button (click)="remove(itemcompra)">Quitar del catálogo</button>
+          <div *ngIf="admin">
+            <button (click)="remove(itemcompra)">Quitar del catálogo</button>
+          </div>
         </div>
       </div>
     </li>
     <br>
-    <h3 class="subtitle">Productos fuera del catálogo</h3>
-    <li *ngFor="let itemcompra of itemsCompra" class="card">
-      <div *ngIf="itemcompra.visibilidad==false">
-        <div (click)="selectedProduct(itemcompra)" class="card" routerLink = "/catalogo/">
-          <img src="{{itemcompra.imagenUrl}}" alt="Imagen no disponible" width="100px" height="100px">
-          <div class="container">
-            <div *ngIf="itemcompra.producto">
-              <h4><b>{{itemcompra.producto.nombre}}</b></h4>
-              <p>Precio: {{itemcompra.producto.precio}} COP</p>
-              <!--
-              <p>Cantidad en Stock: {{itemcompra.producto.cantidad}}</p>
-              -->
-               <p>Cantidad Seleccionada:  {{ cantidadSeleccionada }}<p>
-              <!--label>Nuevo precio:</label>
-              <input type="number" #nprice>
-              <button (click)="updatePrice({{itemCompra.producto.id}}, nprice.value)">Actualizar precio/button-->
-              <button (click)="cantidad_up()" class="btn btn-primary">+</button>
-              <button (click)="cantidad_down()" class="btn btn-primary ml-1">-</button>
-              <p>Subtotal: {{ subTotal }} COP</p>
-              <p>disponibilidad: {{ disponibilidad }}</p>
-              <span *ngIf="disponibilidad < 3"    class="badge badge-danger">agotandose+</span>
+    <div *ngIf="admin">
+      <h3 class="subtitle">Productos fuera del catálogo</h3>
+      <li *ngFor="let itemcompra of itemsCompra" class="card">
+        <div *ngIf="itemcompra.visibilidad==false">
+          <div (click)="selectedProduct(itemcompra)" class="card" routerLink = "/catalogo/">
+            <img src="{{itemcompra.imagenUrl}}" alt="Imagen no disponible" width="100px" height="100px">
+            <div class="container">
+              <div *ngIf="itemcompra.producto">
+                <h4><b>{{itemcompra.producto.nombre}}</b></h4>
+                <p>Precio: {{itemcompra.producto.precio}} COP</p>
+                <p>Cantidad en Stock: {{itemcompra.producto.cantidad}}</p>
+                <!--label>Nuevo precio:</label>
+                <input type="number" #nprice>
+                <button (click)="updatePrice({{itemCompra.producto.id}}, nprice.value)">Actualizar precio/button-->
+              </div>
             </div>
           </div>
+          <div *ngIf="itemcompra.producto">
+            <button (click)="add(itemcompra)">Añadir al catálogo</button>
+          </div>
         </div>
-        <div *ngIf="itemcompra.producto">
-          <button (click)="add(itemcompra)">Añadir al catálogo</button>
-        </div>
-      </div>
-    </li>
+      </li>
+    </div>
   </ul>
 </div>
 <div *ngIf="icSeleccionado">
@@ -62,8 +58,12 @@
     <h2 class="title">{{icSeleccionado.producto.nombre}}</h2>
     <img class="image" src="{{icSeleccionado.imagenUrl}}" alt="Imagen no disponible">
     <p>Precio: {{icSeleccionado.producto.precio}} COP</p>
-    <label>Cantidad:  </label>
-    <input class="input" type="number"  [(ngModel)]="cantidad">
-    <button class="button agregar-carrito" (click)="addToCart(icSeleccionado.id)">Agregar a Carrito</button>
+    <p> Cantidad Seleccionada:  {{ cantidadSeleccionada }}<p>
+    <button (click)="cantidad_up()" class="btn btn-primary">+</button>
+    <button (click)="cantidad_down()" class="btn btn-primary ml-1">-</button>
+    <p>Subtotal: {{ subTotal }} COP</p>
+    <p>Disponibilidad: {{ disponibilidad }}</p>
+    <span *ngIf="disponibilidad < 3"    class="badge badge-danger">agotandose+</span>
+    <button class="button agregar-carrito" (click)="addToCart(icSeleccionado)">Agregar a Carrito</button>
   </div>
 </div>

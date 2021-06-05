@@ -18,6 +18,7 @@ export class CatalogoComponent implements OnInit {
   icSeleccionado: ItemCompra;
   cantidadSeleccionada = 0;
   cantidadValida: number;
+  admin = false;
 
   constructor(
     private catalogosService: CatalogoService,
@@ -27,7 +28,17 @@ export class CatalogoComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(localStorage.getItem('token'));
+    this.checkAdmin();
     this.getCatalogos();
+  }
+
+  checkAdmin(): void {
+    if(localStorage.getItem('username').indexOf('admin')!=-1){
+      this.admin = true;
+    }
+    else{
+      this.admin = false;
+    }
   }
 
   getCatalogos(): void {
@@ -73,10 +84,15 @@ export class CatalogoComponent implements OnInit {
     this.router.navigate(['/catalogo']);
   }
 
-  async addToCart(itemId: number): Promise<any> {
-    if (this.cantidad < 1) {
+  async addToCart(item: ItemCompra): Promise<any> {
+    if (this.cantidadSeleccionada < 1) {
       window.alert('Cantidad no válida');
     } else {
+      this.addProductService.decItem(item.producto.id, this.cantidadSeleccionada).subscribe(
+      producto => {
+        this.itemsCompra[item.id - 1].producto.cantidad = producto.cantidad;
+      });
+      ;
       const userId = Number(localStorage.getItem('userId'));
       let shoppingCart = await this.addProductService.getShoppingCart(userId);
 
@@ -84,23 +100,29 @@ export class CatalogoComponent implements OnInit {
         shoppingCart = await this.addProductService.createShoppingCart(userId);
       }
       console.log(shoppingCart);
-      await this.addProductService.addItem(userId, itemId, this.cantidad);
+      await this.addProductService.addItem(userId, item.id, this.cantidadSeleccionada);
       window.alert('Su producto ha sido agregado al carrito de compras!');
+      this.itemsCompra[item.id - 1].producto.cantidad -= this.cantidadSeleccionada;
     }
   }
 
-  remove(itemId: number): void {
-    //this.catalogosService.remove(itemId);
+  remove(itemC: ItemCompra): void{
+    this.catalogosService.remove(this.catalogos[0].id, itemC.id).subscribe(
+    item => {
+    this.itemsCompra[itemC.id - 1].visibilidad = false;
+    });
   }
 
-  add(itemId: number): void {
-    //this.catalogosService.add(itemId);
+  add(itemC: ItemCompra): void{
+    this.catalogosService.add(this.catalogos[0].id, itemC.id).subscribe(
+    item => {
+    this.itemsCompra[itemC.id - 1].visibilidad = true;
+    });
   }
 
   get disponibilidad() {
     //return 100 - this.cantidad;
     this.cantidadValida = this.icSeleccionado.producto.cantidad - this.cantidadSeleccionada;
-
     if (this.cantidadValida == 0) {
       this.cantidadSeleccionada = 0;
       return 0;
@@ -113,7 +135,6 @@ export class CatalogoComponent implements OnInit {
       this.cantidadSeleccionada = 0;
       return this.icSeleccionado.producto.cantidad;
     }
-
     else {
       return this.icSeleccionado.producto.cantidad - this.cantidadSeleccionada;
     }
@@ -134,23 +155,30 @@ export class CatalogoComponent implements OnInit {
     if (this.cantidadValida == this.icSeleccionado.producto.cantidad) {
       this.cantidadValida = this.icSeleccionado.producto.cantidad;
     }
-
     if (this.cantidadSeleccionada <= 0) {
       this.cantidadSeleccionada = 0;
     }
   }
 
   get cantidad_seleccionda() {
-
-
     this.cantidadValida = this.cantidadSeleccionada - this.icSeleccionado.producto.cantidad;
-
     if (this.cantidadValida <= 0) {
       this.cantidadSeleccionada = 0;
     }
     return this.cantidadSeleccionada;
   }
 
-
-
+  get subTotal() {​​​
+    //return this.cantidad * this.icSeleccionado.producto.precio;
+    if (this.cantidadSeleccionada <= 0) {​​​
+      this.cantidadSeleccionada = 0;
+      return 0;
+    }​​​
+    if (this.cantidadSeleccionada <= this.icSeleccionado.producto.cantidad){
+      return this.cantidadSeleccionada * this.icSeleccionado.producto.precio;
+    }​​​
+    else{​​​
+      return this.icSeleccionado.producto.cantidad * this.icSeleccionado.producto.precio;
+    }​​​
+  }
 }

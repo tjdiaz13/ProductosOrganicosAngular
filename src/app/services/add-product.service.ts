@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import { Producto } from '../models/producto';
+import { Observable, of, pipe } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,8 @@ export class AddProductService {
 
   constructor(private  http: HttpClient) { }
 
-  API_URL  =  'https://mercado-organico-django.herokuapp.com';
+  API_URL = 'https://mercado-organico-django.herokuapp.com';
+  //API_URL = 'http://localhost:8000';
 
    getShoppingCart(userId: number): Promise<any> {
     return new Promise( (resolve, reject) => {
@@ -59,5 +62,9 @@ export class AddProductService {
           reject(err);
         });
      });
+  }
+
+  decItem(productoId: number, cantidad: number): Observable<Producto>{
+    return this.http.get<Producto>(`${this.API_URL}/producto/` + productoId + '/decrease/' + cantidad);
   }
 }

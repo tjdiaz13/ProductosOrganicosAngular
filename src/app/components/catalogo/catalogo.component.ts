@@ -16,8 +16,6 @@ export class CatalogoComponent implements OnInit {
   catalogos: Catalogo[];
   itemsCompra: ItemCompra[];
   icSeleccionado: ItemCompra;
-  cantidadSeleccionada = 0;
-  cantidadValida: number;
 
   constructor(
     private catalogosService: CatalogoService,
@@ -34,6 +32,7 @@ export class CatalogoComponent implements OnInit {
     this.catalogosService.getCatalogos().subscribe(
       catalogos => {
         const listadoCatalogos = catalogos;
+        this.catalogos = catalogos;
         this.getItemsCompra(listadoCatalogos[0].id);
       });
   }
@@ -96,72 +95,5 @@ export class CatalogoComponent implements OnInit {
     //this.catalogosService.add(itemId);
   }
 
-  get subTotal() {
-    //return this.cantidad * this.icSeleccionado.producto.precio;
-    if (this.cantidadSeleccionada <= 0) {
-      this.cantidadSeleccionada = 0;
-      return 0;
-    }
 
-    if (this.cantidadSeleccionada <= this.icSeleccionado.producto.cantidad) {
-      return this.cantidadSeleccionada * this.icSeleccionado.producto.precio;
-    }
-    else {
-      return this.icSeleccionado.producto.cantidad * this.icSeleccionado.producto.precio;
-    }
-  }
-
-  get disponibilidad() {
-    //return 100 - this.cantidad;
-    this.cantidadValida = this.icSeleccionado.producto.cantidad - this.cantidadSeleccionada;
-
-    if (this.cantidadValida == 0) {
-      this.cantidadSeleccionada = 0;
-      return 0;
-    }
-    if (this.cantidadSeleccionada == 0) {
-      this.cantidadSeleccionada = 0;
-      return this.icSeleccionado.producto.cantidad;
-    }
-    if (this.cantidadSeleccionada < 0) {
-      this.cantidadSeleccionada = 0;
-      return this.icSeleccionado.producto.cantidad;
-    }
-
-    else {
-      return this.icSeleccionado.producto.cantidad - this.cantidadSeleccionada;
-    }
-  }
-
-  cantidad_up() {
-    //this.cantidadDisponible += 1
-    this.cantidadValida = this.cantidadSeleccionada += 1
-    //this.cantidadValida = this.icSeleccionado.producto.cantidad - this.cantidadSeleccionada;
-    if (this.cantidadValida == this.icSeleccionado.producto.cantidad) {
-      this.cantidadValida = this.icSeleccionado.producto.cantidad;
-    }
-  }
-
-  cantidad_down() {
-    //this.cantidadDisponible -= 1
-    this.cantidadValida = this.cantidadSeleccionada -= 1
-    if (this.cantidadValida == this.icSeleccionado.producto.cantidad) {
-      this.cantidadValida = this.icSeleccionado.producto.cantidad;
-    }
-
-    if (this.cantidadSeleccionada <= 0) {
-      this.cantidadSeleccionada = 0;
-    }
-  }
-
-  get cantidad_seleccionda() {
-
-
-    this.cantidadValida = this.cantidadSeleccionada - this.icSeleccionado.producto.cantidad;
-
-    if (this.cantidadValida <= 0) {
-      this.cantidadSeleccionada = 0;
-    }
-    return this.cantidadSeleccionada;
-  }
 }

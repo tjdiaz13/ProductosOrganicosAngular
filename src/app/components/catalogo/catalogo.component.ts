@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CatalogoService } from '../../services/catalogo.service';
-import {AddProductService} from '../../services/add-product.service';
+import { AddProductService } from '../../services/add-product.service';
 import { Router, RouterModule } from '@angular/router';
-import {ItemCompra} from '../../models/itemCompra';
-import {Catalogo} from '../../models/catalogo';
+import { ItemCompra } from '../../models/itemCompra';
+import { Catalogo } from '../../models/catalogo';
 
 
 @Component({
@@ -21,53 +21,52 @@ export class CatalogoComponent implements OnInit {
     private catalogosService: CatalogoService,
     private router: Router,
     private addProductService: AddProductService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     console.log(localStorage.getItem('token'));
     this.getCatalogos();
   }
 
-  getCatalogos(): void{
+  getCatalogos(): void {
     this.catalogosService.getCatalogos().subscribe(
       catalogos => {
         const listadoCatalogos = catalogos;
+        this.catalogos = catalogos;
         this.getItemsCompra(listadoCatalogos[0].id);
       });
   }
 
-  getItemsCompra(catalogoId: number): void{
+  getItemsCompra(catalogoId: number): void {
     this.catalogosService.getItemsCompra(catalogoId).subscribe(
-    itemsCompra => {
-      this.getProductos(catalogoId, itemsCompra, 0);
-    });
+      itemsCompra => {
+        this.getProductos(catalogoId, itemsCompra, 0);
+      });
   }
 
-  getProductos(catalogoId: number, items: ItemCompra[], index: number): void{
-      if (index < items.length)
-      {
-        const item = items[index];
-        this.catalogosService.getProducto(catalogoId, item.id).subscribe(
+  getProductos(catalogoId: number, items: ItemCompra[], index: number): void {
+    if (index < items.length) {
+      const item = items[index];
+      this.catalogosService.getProducto(catalogoId, item.id).subscribe(
         producto => {
           item.producto = producto[0];
           items[index] = item;
           index++;
           this.getProductos(catalogoId, items, index);
         });
-      }
-      else
-      {
-        this.itemsCompra = items;
-        console.log('test', this.itemsCompra);
-        return;
-      }
+    }
+    else {
+      this.itemsCompra = items;
+      console.log('test', this.itemsCompra);
+      return;
+    }
   }
 
-  selectedProduct(ic: ItemCompra): void{
+  selectedProduct(ic: ItemCompra): void {
     this.icSeleccionado = ic;
   }
 
-  unselect(): void{
+  unselect(): void {
     this.icSeleccionado = null;
     this.router.navigate(['/catalogo']);
   }
@@ -87,4 +86,14 @@ export class CatalogoComponent implements OnInit {
       window.alert('Su producto ha sido agregado al carrito de compras!');
     }
   }
+
+  remove(itemId: number): void {
+    //this.catalogosService.remove(itemId);
+  }
+
+  add(itemId: number): void {
+    //this.catalogosService.add(itemId);
+  }
+
+
 }

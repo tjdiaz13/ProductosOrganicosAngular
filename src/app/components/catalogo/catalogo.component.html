@@ -30,7 +30,7 @@
       <h3 class="subtitle">Productos fuera del catálogo</h3>
       <li *ngFor="let itemcompra of itemsCompra" class="card">
         <div *ngIf="itemcompra.visibilidad==false">
-          <div (click)="selectedProduct(itemcompra)" class="card" routerLink = "/catalogo/">
+          <div class="card">
             <img src="{{itemcompra.imagenUrl}}" alt="Imagen no disponible" width="100px" height="100px">
             <div class="container">
               <div *ngIf="itemcompra.producto">

@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, pipe } from 'rxjs';
 import { Auth } from '../models/auth';
 
-const baseUrl = 'https://mercado-organico-django.herokuapp.com/signin';
-//const baseUrl = 'http://localhost:8000/signin';
+//const baseUrl = 'https://mercado-organico-django.herokuapp.com/signin';
+const baseUrl = 'http://localhost:8000/signin';
 
 @Injectable({
   providedIn: 'root'

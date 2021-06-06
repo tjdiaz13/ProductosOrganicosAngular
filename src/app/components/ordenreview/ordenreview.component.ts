@@ -3,6 +3,7 @@ import { OrdenreviewService } from '../../services/ordenreview.service';
 import { CarritoItemCompraService } from '../../services/carrito-item-compra.service';
 import {ItemCarrito} from '../../models/itemCarrito';
 import { OrdenuserService } from '../../services/ordenuser.service';
+import { Router, RouterModule } from '@angular/router';
 import {Orden} from '../../models/orden';
 
 @Component({
@@ -16,7 +17,9 @@ export class OrdenreviewComponent implements OnInit {
   precioTotal: number;
   status: string;
 
-  constructor( private carritoService: CarritoItemCompraService) {
+  constructor(
+    private carritoService: CarritoItemCompraService,
+    private router: Router) {
 
   }
 
@@ -63,6 +66,10 @@ export class OrdenreviewComponent implements OnInit {
         this.status = 'Delete successful';
         this.ngOnInit();
       });
+  }
+
+  back(): void{
+    this.router.navigate(['/orden']);
   }
 
 }

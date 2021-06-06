@@ -11,7 +11,12 @@
             <div *ngIf="itemcompra.producto">
               <h4><b>{{itemcompra.producto.nombre}}</b></h4>
               <p>Precio: {{itemcompra.producto.precio}} COP</p>
-              <p>Cantidad en Stock: {{itemcompra.producto.cantidad}}</p>
+              <div *ngIf="admin">
+                <p>Cantidad en Stock: {{itemcompra.producto.cantidad}}</p>
+              </div>
+              <div *ngIf="admin==false">
+                <p>Cantidad disponible: {{itemcompra.producto.cantidad}}</p>
+              </div>
               <!--<label>Nuevo precio:</label>
               <input type="number" #nprice>
               <button (click)="updatePrice({{itemCompra.producto.id}}, nprice.value)">Actualizar precio/button-->

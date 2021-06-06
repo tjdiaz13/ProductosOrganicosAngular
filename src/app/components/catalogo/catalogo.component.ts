@@ -78,6 +78,8 @@ export class CatalogoComponent implements OnInit {
 
   selectedProduct(ic: ItemCompra): void {
     this.icSeleccionado = ic;
+    this.updateDisponibilidad();
+    this.updateSubTotal();
   }
 
   unselect(): void {
@@ -105,10 +107,13 @@ export class CatalogoComponent implements OnInit {
   decrease(item: ItemCompra): void{
       this.addProductService.decItem(item.producto.id, this.cantidadSeleccionada).subscribe(
       producto => {
-        this.itemsCompra[item.id - 1].producto.cantidad = producto.cantidad;
-        this.cantidadSeleccionada = 0;
-        this.disponibilidad;
+
       });
+      this.itemsCompra[item.id - 1].producto.cantidad -= this.cantidadSeleccionada;
+      this.icSeleccionado.producto.cantidad -= this.cantidadSeleccionada;
+      this.cantidadSeleccionada = 0;
+      this.updateDisponibilidad();
+      this.updateSubTotal();
   }
 
   remove(itemC: ItemCompra): void{

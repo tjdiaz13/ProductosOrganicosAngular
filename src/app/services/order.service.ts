@@ -26,6 +26,7 @@ export class OrderService {
           metodo_pago: data.pay_method,
           numero_tarjeta: data.card_number,
           numero_cuota: data.quota,
+          precio_total: data.total_price,
           carrito: data.user_id
        },
       ).subscribe(

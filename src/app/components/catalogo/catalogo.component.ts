@@ -17,7 +17,8 @@ export class CatalogoComponent implements OnInit {
   itemsCompra: ItemCompra[];
   icSeleccionado: ItemCompra;
   cantidadSeleccionada = 0;
-  cantidadValida: number;
+  subtotal = 0;
+  disponibilidad: number;
   admin = false;
 
   constructor(
@@ -77,6 +78,8 @@ export class CatalogoComponent implements OnInit {
 
   selectedProduct(ic: ItemCompra): void {
     this.icSeleccionado = ic;
+    this.updateDisponibilidad();
+    this.updateSubTotal();
   }
 
   unselect(): void {
@@ -88,11 +91,6 @@ export class CatalogoComponent implements OnInit {
     if (this.cantidadSeleccionada < 1) {
       window.alert('Cantidad no válida');
     } else {
-      this.addProductService.decItem(item.producto.id, this.cantidadSeleccionada).subscribe(
-      producto => {
-        this.itemsCompra[item.id - 1].producto.cantidad = producto.cantidad;
-      });
-      ;
       const userId = Number(localStorage.getItem('userId'));
       let shoppingCart = await this.addProductService.getShoppingCart(userId);
 
@@ -102,8 +100,20 @@ export class CatalogoComponent implements OnInit {
       console.log(shoppingCart);
       await this.addProductService.addItem(userId, item.id, this.cantidadSeleccionada);
       window.alert('Su producto ha sido agregado al carrito de compras!');
-      this.itemsCompra[item.id - 1].producto.cantidad -= this.cantidadSeleccionada;
+      this.decrease(item);
     }
+  }
+
+  decrease(item: ItemCompra): void{
+      this.addProductService.decItem(item.producto.id, this.cantidadSeleccionada).subscribe(
+      producto => {
+
+      });
+      this.itemsCompra[item.id - 1].producto.cantidad -= this.cantidadSeleccionada;
+      this.icSeleccionado.producto.cantidad -= this.cantidadSeleccionada;
+      this.cantidadSeleccionada = 0;
+      this.updateDisponibilidad();
+      this.updateSubTotal();
   }
 
   remove(itemC: ItemCompra): void{
@@ -120,65 +130,43 @@ export class CatalogoComponent implements OnInit {
     });
   }
 
-  get disponibilidad() {
-    //return 100 - this.cantidad;
-    this.cantidadValida = this.icSeleccionado.producto.cantidad - this.cantidadSeleccionada;
-    if (this.cantidadValida == 0) {
+  updateDisponibilidad() {
+    var calculado = 0;
+    if (this.cantidadSeleccionada <= 0) {
       this.cantidadSeleccionada = 0;
-      return 0;
-    }
-    if (this.cantidadSeleccionada == 0) {
-      this.cantidadSeleccionada = 0;
-      return this.icSeleccionado.producto.cantidad;
-    }
-    if (this.cantidadSeleccionada < 0) {
-      this.cantidadSeleccionada = 0;
-      return this.icSeleccionado.producto.cantidad;
+      calculado = this.icSeleccionado.producto.cantidad;
     }
     else {
-      return this.icSeleccionado.producto.cantidad - this.cantidadSeleccionada;
+      calculado = this.icSeleccionado.producto.cantidad - this.cantidadSeleccionada;
     }
+    this.disponibilidad = calculado;
   }
 
   cantidad_up() {
-    //this.cantidadDisponible += 1
-    this.cantidadValida = this.cantidadSeleccionada += 1
-    //this.cantidadValida = this.icSeleccionado.producto.cantidad - this.cantidadSeleccionada;
-    if (this.cantidadValida == this.icSeleccionado.producto.cantidad) {
-      this.cantidadValida = this.icSeleccionado.producto.cantidad;
+    var cantidadValida = this.cantidadSeleccionada + 1
+    if (cantidadValida<=this.icSeleccionado.producto.cantidad) {
+      this.cantidadSeleccionada+=1;
     }
+    else{
+      this.cantidadSeleccionada=this.icSeleccionado.producto.cantidad;
+    }
+    this.updateDisponibilidad();
+    this.updateSubTotal();
   }
 
   cantidad_down() {
-    //this.cantidadDisponible -= 1
-    this.cantidadValida = this.cantidadSeleccionada -= 1
-    if (this.cantidadValida == this.icSeleccionado.producto.cantidad) {
-      this.cantidadValida = this.icSeleccionado.producto.cantidad;
+    var cantidadValida = this.cantidadSeleccionada - 1
+    if (cantidadValida >= 0) {
+      this.cantidadSeleccionada-=1;
     }
-    if (this.cantidadSeleccionada <= 0) {
+    else{
       this.cantidadSeleccionada = 0;
     }
+    this.updateDisponibilidad();
+    this.updateSubTotal();
   }
 
-  get cantidad_seleccionda() {
-    this.cantidadValida = this.cantidadSeleccionada - this.icSeleccionado.producto.cantidad;
-    if (this.cantidadValida <= 0) {
-      this.cantidadSeleccionada = 0;
-    }
-    return this.cantidadSeleccionada;
-  }
-
-  get subTotal() {​​​
-    //return this.cantidad * this.icSeleccionado.producto.precio;
-    if (this.cantidadSeleccionada <= 0) {​​​
-      this.cantidadSeleccionada = 0;
-      return 0;
-    }​​​
-    if (this.cantidadSeleccionada <= this.icSeleccionado.producto.cantidad){
-      return this.cantidadSeleccionada * this.icSeleccionado.producto.precio;
-    }​​​
-    else{​​​
-      return this.icSeleccionado.producto.cantidad * this.icSeleccionado.producto.precio;
-    }​​​
+  updateSubTotal() {​​​
+    this.subtotal = ​this.cantidadSeleccionada * this.icSeleccionado.producto.precio;
   }
 }

@@ -110,7 +110,7 @@ export class CatalogoComponent implements OnInit {
 
       });
       this.itemsCompra[item.id - 1].producto.cantidad -= this.cantidadSeleccionada;
-      this.icSeleccionado.producto.cantidad -= this.cantidadSeleccionada;
+      this.icSeleccionado.producto.cantidad = this.itemsCompra[item.id - 1].producto.cantidad;
       this.cantidadSeleccionada = 0;
       this.updateDisponibilidad();
       this.updateSubTotal();
@@ -131,15 +131,7 @@ export class CatalogoComponent implements OnInit {
   }
 
   updateDisponibilidad() {
-    var calculado = 0;
-    if (this.cantidadSeleccionada <= 0) {
-      this.cantidadSeleccionada = 0;
-      calculado = this.icSeleccionado.producto.cantidad;
-    }
-    else {
-      calculado = this.icSeleccionado.producto.cantidad - this.cantidadSeleccionada;
-    }
-    this.disponibilidad = calculado;
+    this.disponibilidad = this.icSeleccionado.producto.cantidad;
   }
 
   cantidad_up() {
@@ -150,7 +142,6 @@ export class CatalogoComponent implements OnInit {
     else{
       this.cantidadSeleccionada=this.icSeleccionado.producto.cantidad;
     }
-    this.updateDisponibilidad();
     this.updateSubTotal();
   }
 
@@ -162,7 +153,6 @@ export class CatalogoComponent implements OnInit {
     else{
       this.cantidadSeleccionada = 0;
     }
-    this.updateDisponibilidad();
     this.updateSubTotal();
   }
 

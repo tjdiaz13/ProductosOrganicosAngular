@@ -34,7 +34,7 @@ export class CatalogoComponent implements OnInit {
   }
 
   checkAdmin(): void {
-    if(localStorage.getItem('username').indexOf('admin')!=-1){
+    if(localStorage.getItem('username').indexOf('dmin')!=-1){
       this.admin = true;
     }
     else{

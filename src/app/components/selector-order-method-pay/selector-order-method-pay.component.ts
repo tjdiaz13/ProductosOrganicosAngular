@@ -73,7 +73,7 @@ export class SelectorOrderMethodPayComponent implements OnInit {
       };
       return await this.orderService.createOrder(data);
     } catch (e) {
-      this.showModal('Ha ocurrido un error', 'Error realizando pago', 'error');
+      this.showModal('Ha ocurrido un error', 'Inténtalo más tarde', 'error');
     }
   }
 

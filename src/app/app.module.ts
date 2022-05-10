@@ -36,6 +36,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { SelectorOrderDateComponent } from './components/selector-order-date/selector-order-date.component';
 import { SelectorOrderMethodPayComponent } from './components/selector-order-method-pay/selector-order-method-pay.component';
 import { AlphabetOnlyDirective } from './components/payment/alphabet-only.directive';
+import {BackButtonDisableModule} from "angular-disable-browser-back-button";
 
 
 @NgModule({
@@ -61,7 +62,10 @@ import { AlphabetOnlyDirective } from './components/payment/alphabet-only.direct
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    BackButtonDisableModule.forRoot({
+      preserveScrollPosition: true
+    })
   ],
   providers: [
     ClientService,

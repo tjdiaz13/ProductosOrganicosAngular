@@ -15,7 +15,8 @@ export class ClientService {
     this.model = {
       roles: [
         { id: 1, nombre: 'Cliente' },
-        { id: 2, nombre: 'Productor' }
+        { id: 2, nombre: 'Productor' },
+        { id: 3, nombre: 'Administrador' },
       ]
     };
 

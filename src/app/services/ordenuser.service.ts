@@ -12,7 +12,7 @@ export class OrdenuserService {
   constructor(private  httpClient: HttpClient) { }
 
   API_URL  =  'https://mercado-organico-django.herokuapp.com';
-  // API_URL  =  'http://127.0.0.1:8000';
+  //API_URL  =  'http://localhost:8000';
 
   getOrderUser(userId: number): Promise<any> {
     return new Promise( (resolve, reject) => {

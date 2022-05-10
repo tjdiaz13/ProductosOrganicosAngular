@@ -21,17 +21,19 @@
                                     </div>
                                 </div>
                             </td>
-                            <td data-th="Date">{{ordencarrito.fecha_compra}}</td>
+                            <td data-th="Date">
+                              {{ordencarrito.fecha_compra}}
+                            </td>
                             <td data-th="Metodo de Pago">
                                 {{ordencarrito.metodo_pago}}
                             </td>
                             <td data-th="Price">
                                 {{ordencarrito.precio_total}}
                             </td>
-                            <td>
+                            <td data-th="Summary">
                                 <button type="button" name="review_orden" class="btn btn-primary btn-xs" (click)="revCarrito(ordencarrito.id)">Resumen</button>
                             </td>
-                            <td>
+                            <td data-th="Report">
                                 <button type="button" name="descargar_orden" class="btn btn-danger btn-xs" (click)="desCarrito(ordencarrito.id)">Descargar</button>
                             </td>
 

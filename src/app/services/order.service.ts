@@ -11,13 +11,14 @@ export class OrderService {
   ) { }
 
   API_URL  =  'https://mercado-organico-django.herokuapp.com';
-  // API_URL  =  'http://localhost:8000';
+  //API_URL  =  'http://localhost:8000';
 
   createOrder(data: any): Promise<any> {
     const headers = { 'content-type': 'application/json'};
     return new Promise( (resolve, reject) => {
       this.http.post(`${this.API_URL}/orden/`,
         {
+          precio_total: data.total_price,
           fecha_compra: data.shopping_date,
           fecha_entrega: data.delivery_date,
           hora_entrega: data.delivery_time,

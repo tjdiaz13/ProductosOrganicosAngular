@@ -10,10 +10,10 @@ import {NavigationStart, Router} from "@angular/router";
 export class AppComponent {
   title = 'Mercados Organicos';
 
-  constructor(location: PlatformLocation) {
+  /*constructor(location: PlatformLocation) {
     location.onPopState(() => {
       console.log('principal');
       alert(window.location);
     }); }
-
+*/
 }

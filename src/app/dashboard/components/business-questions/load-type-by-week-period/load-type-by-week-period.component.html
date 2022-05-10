@@ -1,0 +1,47 @@
+<mat-card class="example-card">
+  <mat-card-title class="title">Relación entre el día de la semana y el tipo de carga en cada estado</mat-card-title>
+  <mat-card-content class="card-content">
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Seleccione un estado</mat-label>
+      <mat-select [(ngModel)]="selectedValue">
+        <mat-option *ngFor="let state of stateList" [value]="state">{{state}}</mat-option>
+      </mat-select>
+    </mat-form-field><br/>
+    <button mat-raised-button [disabled]="searching" (click)="goToQuery()" id="btn-query">Consultar</button>
+
+
+    <div *ngIf="dataSource">
+      <div class="result-text">
+        <mat-label> <b>Resultado:</b></mat-label>
+      </div>
+      <div class="content-table">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <ng-container matColumnDef="tipocarga">
+            <th mat-header-cell *matHeaderCellDef> Tipo de Carga</th>
+            <td mat-cell *matCellDef="let element"> {{element.tipocarga}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="diasemana">
+            <th mat-header-cell *matHeaderCellDef> Día Semana </th>
+            <td mat-cell *matCellDef="let element"> {{element.diasemana}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="ano">
+            <th mat-header-cell *matHeaderCellDef> Año</th>
+            <td mat-cell *matCellDef="let element"> {{element.ano}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="total">
+            <th mat-header-cell *matHeaderCellDef> Total Embarcaciones </th>
+            <td mat-cell *matCellDef="let element"> {{element.total}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+

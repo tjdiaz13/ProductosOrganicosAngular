@@ -3,7 +3,7 @@
     <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()" color="white">
       <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
     </button>
-    <span>Reporting App</span>
+    <span>Whats Car</span>
   </mat-toolbar-row>
 </mat-toolbar>
 
@@ -11,34 +11,9 @@
   <mat-sidenav #sidenav mode="side" opened role="navigation">
     <mat-nav-list>
       <mat-list-item (click)="redirect('/home')"><mat-icon>home</mat-icon>Inicio</mat-list-item>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-icon>equalizer</mat-icon>Reportes Taller 1
-        </mat-expansion-panel-header>
-        <mat-nav-list>
-          <a mat-list-item (click)="redirect('/traffic')"><mat-icon>traffic</mat-icon>Estado con tráfico</a>
-          <a mat-list-item (click)="redirect('/load-type-by-period')"><mat-icon>view_array</mat-icon>Tipo de carga por estado</a>
-          <a mat-list-item (click)="redirect('/craft-by-month')"><mat-icon>timeline</mat-icon>Embarcaciones por Mes</a>
-          <a mat-list-item (click)="redirect('/geo-dist-by-period')"><mat-icon>map</mat-icon>Distribución de embarcaciones</a>
-          <a mat-list-item (click)="redirect('/load-type-by-week-period')"><mat-icon>directions_boat</mat-icon>Relación de tipo de carga</a>
-          <a mat-list-item (click)="redirect('/load-type-by-weekend')"><mat-icon>today</mat-icon>Tipo de Carga Fin de Semana</a>
-          <a mat-list-item (click)="redirect('/weekday-traffic')"><mat-icon>calendar_today</mat-icon>Tráfico en la semana</a>
-        </mat-nav-list>
-      </mat-expansion-panel>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-icon>equalizer</mat-icon>Reportes Taller 2
-        </mat-expansion-panel-header>
-        <mat-nav-list>
-          <a mat-list-item (click)="redirect('/sentiment-general')"><mat-icon>sentiment_satisfied_alt</mat-icon>Análisis de Sentimientos</a>
-          <a mat-list-item (click)="redirect('/sentiment-by-entities')"><mat-icon>sentiment_satisfied_alt</mat-icon>Sentimientos por Entidad</a>
-          <a mat-list-item (click)="redirect('/sentiment-by-topic')"><mat-icon>sentiment_satisfied_alt</mat-icon>Sentimientos por Tema</a>
-          <a mat-list-item (click)="redirect('/tweets-news')"><mat-icon>article</mat-icon>Tweets y noticias</a>
-          <a mat-list-item (click)="redirect('/dbpedia')"><mat-icon>public</mat-icon>DBPedia</a>
-          <a mat-list-item (click)="redirect('/question-one')"><mat-icon>filter_1</mat-icon>Pregunta 1</a>
-          <a mat-list-item (click)="redirect('/question-two')"><mat-icon>filter_2</mat-icon>Pregunta 2</a>
-        </mat-nav-list>
-      </mat-expansion-panel>
+      <mat-list-item (click)="redirect('/schedule')"><mat-icon>today</mat-icon>Agendar Cita</mat-list-item>
+      <mat-list-item (click)="redirect('/home')"><mat-icon>contact_phone</mat-icon>Contáctenos</mat-list-item>
+      <mat-list-item (click)="redirect('/faq')"><mat-icon>contact_support</mat-icon>Preguntas Frecuentes</mat-list-item>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>

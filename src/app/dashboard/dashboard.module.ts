@@ -9,6 +9,8 @@ import { MenuComponent } from './components/menu/menu.component';
 import { HomeComponent } from './components/home/home.component';
 import {FormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { FaqComponent } from './components/faq/faq.component';
 
 @NgModule({
   declarations: [
@@ -16,14 +18,17 @@ import {MatDialogModule} from '@angular/material/dialog';
     LoadTypeByWeekPeriodComponent,
     LoadTypeByPeriodComponent,
     MenuComponent,
-    HomeComponent
+    HomeComponent,
+    FaqComponent
   ],
   imports: [
     CommonModule,
     DashboardRoutingModule,
     SharedModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    NgxMaterialTimepickerModule,
+
   ]
 })
 export class DashboardModule { }

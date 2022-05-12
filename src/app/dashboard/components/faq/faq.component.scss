@@ -8,7 +8,7 @@
 
 .card-image {
   height: 280px;
-  width: 480px;
+  width: 34%;
 }
 
 .sumary {
@@ -17,3 +17,7 @@
   font-size: medium;
 }
 
+.card-content {
+  margin: 5% 4%;
+  display: flex;
+}

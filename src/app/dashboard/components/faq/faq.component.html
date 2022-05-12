@@ -1,0 +1,51 @@
+
+<mat-card class="example-card">
+  <mat-card-title class="title">Preguntas Frecuentes</mat-card-title>
+
+  <mat-card-content class="card-content">
+    <mat-accordion style = "margin-right: 50px">
+      <mat-expansion-panel style="text-align: left" (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header style="font-weight: bold">
+          <mat-panel-title>
+            Qué servicios prestan?
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>Tenemos para ti los servicios de: </p>
+        <ul style="margin-left: 35px">
+          <li>Latonería y pintura</li>
+          <li>Detailing</li>
+        </ul>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel style="text-align: left" (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header style="font-weight: bold">
+          <mat-panel-title>
+            En qué horario pueden recoger mi vehículo?
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p> Puedes agendar el servicio para que tu vehículo sea recogido en tu vivienda en el horario de 7:00 AM a
+          5:00 pm
+        </p>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel style="text-align: left" (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false">
+        <mat-expansion-panel-header style="font-weight: bold">
+          <mat-panel-title>
+            Quién responde si mi carro sufre algún accidente en la entrega?
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>No te preocupes, nosotros aseguramos tu carro con una póliza que cubre cualquier tipo de daño presentado en el transporte
+          de tu vehículo en la entrega, con lo cual tu no tendrás que incurrir en ningún costo adicional.
+        </p>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+    <img class="card-image" src="../../../../assets/preguntas-frecuentes.jpeg" >
+
+  </mat-card-content>
+</mat-card>
+
+

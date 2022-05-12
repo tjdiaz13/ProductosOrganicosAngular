@@ -4,14 +4,16 @@ import {DashboardComponent} from './dashboard.component';
 import {LoadTypeByPeriodComponent} from './components/business-questions/load-type-by-period/load-type-by-period.component';
 import {LoadTypeByWeekPeriodComponent} from './components/business-questions/load-type-by-week-period/load-type-by-week-period.component';
 import {HomeComponent} from './components/home/home.component';
+import {FaqComponent} from './components/faq/faq.component';
 
 const routes: Routes = [
   {
     path: '', component: DashboardComponent,
     children: [
       { path: 'home', component: HomeComponent },
-      { path: 'load-type-by-period', component: LoadTypeByPeriodComponent },
+      { path: 'schedule', component: LoadTypeByPeriodComponent },
       { path: 'load-type-by-week-period', component: LoadTypeByWeekPeriodComponent },
+      { path: 'faq', component: FaqComponent },
     ]
   }
 ];

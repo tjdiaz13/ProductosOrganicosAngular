@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import Swal from "sweetalert2";
 import {BusinessquestionService} from "../../../../services/businessquestion.service";
 import * as moment from 'moment';
@@ -20,6 +20,13 @@ export class LoadTypeByPeriodComponent implements OnInit {
 
   dataSource: any;
   displayedColumns: any;
+  email = new FormControl('', [Validators.required, Validators.email]);
+
+  myFilter = (d: Date | null): boolean => {
+    const day = (d || new Date()).getDay();
+    // Prevent Saturday and Sunday from being selected.
+    return day !== 0 && day !== 6;
+  };
 
   constructor(
     private businessquestion: BusinessquestionService
@@ -64,5 +71,13 @@ export class LoadTypeByPeriodComponent implements OnInit {
       message,
       icon
     );
+  }
+
+  getErrorMessage() {
+    if (this.email.hasError('required')) {
+      return 'Debes ingresar un valor';
+    }
+
+    return this.email.hasError('email') ? 'Correo no válido' : '';
   }
 }

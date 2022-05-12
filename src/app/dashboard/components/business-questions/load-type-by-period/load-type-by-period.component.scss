@@ -12,8 +12,12 @@
   box-shadow: none;
 }
 
+.card-ext {
+  margin: 10px 26%;
+}
+
 .card-content-schedule {
-  padding: 7% 21%;
+  padding: 10% 10%;
   display: grid;
   text-align: left;
 }
@@ -23,12 +27,12 @@
   padding: 0.75em 0.75em 0 0.75em;
   box-sizing: border-box;
   width: 100%;
-  font-size: medium;
+  font-size: unset;
   font-weight: 400;
   line-height: 1.125;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   letter-spacing: normal;
-  height: 51px;
+  height: 59px;
   border: none;
   background-color: rgba(0,0,0,.02);
   line-height: 1.125;
@@ -64,4 +68,17 @@ th.mat-header-cell {
   justify-content: center;
   display: flex;
   padding-top: 28px;
+}
+
+.date-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.date-div {
+  width: 50%;
+}
+
+.inp-date {
+  width: -webkit-fill-available !important;
 }

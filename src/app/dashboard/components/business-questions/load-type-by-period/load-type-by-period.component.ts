@@ -64,7 +64,7 @@ export class LoadTypeByPeriodComponent implements OnInit {
       Swal.fire('Agendando Cita');
       Swal.showLoading();
 
-      await this.sleep(4000);
+      await this.sleep(1000);
       Swal.close();
       this.showModal('Solicitud Recibida', 'Te enviaremos a tu correo la cotización del servicio', 'success');
       this.searching = false;

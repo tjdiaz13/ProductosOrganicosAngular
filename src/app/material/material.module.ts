@@ -21,6 +21,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatSelectModule} from '@angular/material/select';
+import {MatFileUploadModule} from "angular-material-fileupload";
 
 @NgModule({
   declarations: [],
@@ -46,7 +47,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatSidenavModule,
     MatDatepickerModule,
     MatProgressSpinnerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatFileUploadModule
   ],
   exports: [
     MatSliderModule,
@@ -69,7 +71,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatSidenavModule,
     MatDatepickerModule,
     MatProgressSpinnerModule,
-    MatSelectModule
+    MatSelectModule,
+    MatFileUploadModule
   ],
 })
 export class MaterialModule { }

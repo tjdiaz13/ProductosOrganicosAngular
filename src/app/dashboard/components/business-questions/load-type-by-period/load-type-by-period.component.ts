@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
-import Swal from "sweetalert2";
-import {BusinessquestionService} from "../../../../services/businessquestion.service";
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import Swal from 'sweetalert2';
+import {BusinessquestionService} from '../../../../services/businessquestion.service';
 import * as moment from 'moment';
-import {timeInterval} from "rxjs/operators";
 
 
 @Component({
@@ -18,18 +17,35 @@ export class LoadTypeByPeriodComponent implements OnInit {
   selectHour: string;
   email = new FormControl('', [Validators.required, Validators.email]);
 
+  myFiles: string [] = [];
+
+  myForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    file: new FormControl('', [Validators.required])
+  });
+
+
   myFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
     // Prevent Saturday and Sunday from being selected.
     return day !== 0 && day !== 6;
   };
 
-
-  // [disabled]="!range.value.end || searching"
   constructor(
     private businessquestion: BusinessquestionService
   ) {
     this.searching = false;
+  }
+
+  get f(){
+    return this.myForm.controls;
+  }
+
+  onFileChange(event: any): void {
+
+    for ( let i = 0; i < event.target.files.length; i++) {
+      this.myFiles.push(event.target.files[i]);
+    }
   }
 
   ngOnInit(): void {
@@ -37,13 +53,13 @@ export class LoadTypeByPeriodComponent implements OnInit {
 
   async goToQuery(): Promise<any> {
     try {
-      const date = moment(this.selectDate).format('YYYY-MM-DD')
+      const date = moment(this.selectDate).format('YYYY-MM-DD');
       console.log('start date: ' + this.selectHour);
       this.searching = true;
       Swal.fire('Agendando Cita');
       Swal.showLoading();
 
-      await this.sleep(5000);
+      await this.sleep(4000);
       Swal.close();
       this.showModal('Solicitud Recibida', 'Te enviaremos a tu correo la cotización del servicio', 'success');
       this.searching = false;
@@ -78,4 +94,18 @@ export class LoadTypeByPeriodComponent implements OnInit {
 
     return this.email.hasError('email') ? 'Correo no válido' : '';
   }
+
+  /*submit(): void {
+    const formData = new FormData();
+
+    for (let i = 0; i < this.myFiles.length; i++) {
+      formData.append('file[]', this.myFiles[i]);
+    }
+
+    this.http.post('http://localhost:8001/upload.php', formData)
+    .subscribe(res => {
+      console.log(res);
+      alert('Uploaded Successfully.');
+    });
+  }*/
 }

@@ -27,9 +27,24 @@
         <mat-label>Ingrese su correo</mat-label>
         <input matInput placeholder="pat@example.com" [formControl]="email" required>
         <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field><br/>
+      </mat-form-field>
+
+      <div class="form-group">
+        <label for="file"><b>Imagenes</b></label>
+        <input style="border: none;"
+          formControlName="file"
+          id="file"
+          type="file"
+          multiple
+          class="form-control"
+          (change)="onFileChange($event)">
+        <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+          <div *ngIf="f.file.errors && f.file.errors.required">Archivo requerido.</div>
+        </div>
+      </div>
       <br/>
-      <button class="btn-schedule" mat-raised-button  (click)="goToQuery()" id="btn-query">Reservar</button>
+
+      <button class="btn-schedule" [disabled]="!selectDate || !selectHour || email.invalid || searching" mat-raised-button  (click)="goToQuery()" id="btn-query">Reservar</button>
 
 
     </mat-card-content>

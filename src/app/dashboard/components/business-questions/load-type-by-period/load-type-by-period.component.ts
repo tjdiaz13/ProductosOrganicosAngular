@@ -15,6 +15,11 @@ export class LoadTypeByPeriodComponent implements OnInit {
   searching: boolean;
   selectDate: string;
   selectHour: string;
+  marca: string;
+  placa: string;
+  direccion: string;
+  modelo: string;
+  color: string;
   email = new FormControl('', [Validators.required, Validators.email]);
 
   myFiles: string [] = [];

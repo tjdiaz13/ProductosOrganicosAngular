@@ -24,10 +24,65 @@
 
       <mat-label> <b>Correo Electrónico:</b></mat-label><br/>
       <mat-form-field appearance="fill">
-        <mat-label>Ingrese su correo</mat-label>
+        <mat-label>Ingresa tu correo</mat-label>
         <input matInput placeholder="pat@example.com" [formControl]="email" required>
         <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
       </mat-form-field>
+
+      <div class="date-container">
+        <div class="date-div">
+          <mat-label> <b>Marca:</b></mat-label><br/>
+          <mat-form-field style="display: block" class="example-full-width" appearance="fill">
+            <mat-label>Ingresa la marca de su vehículo</mat-label>
+            <input matInput placeholder="Marca" [(ngModel)]="marca">
+          </mat-form-field>
+        </div>
+
+        <div style="width: 47%">
+          <mat-label> <b>Placa:</b></mat-label><br/>
+          <mat-form-field style="display: block" class="example-full-width" appearance="fill">
+            <mat-label>Ingresa la placa de su vehículo</mat-label>
+            <input matInput placeholder="Placa" [(ngModel)]="placa">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="date-container">
+        <div class="date-div">
+          <mat-label> <b>Modelo:</b></mat-label><br/>
+          <mat-form-field style="display: block" class="example-full-width" appearance="fill">
+            <mat-label>Ingresa el modelo de su vehículo</mat-label>
+            <input matInput placeholder="Modelo" [(ngModel)]="modelo">
+          </mat-form-field>
+        </div>
+
+        <div style="width: 47%">
+          <mat-label> <b>Color:</b></mat-label><br/>
+          <mat-form-field style="display: block" class="example-full-width" appearance="fill">
+            <mat-label>Ingresa el color de su vehículo</mat-label>
+            <input matInput placeholder="Color" [(ngModel)]="color">
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="date-container">
+        <div class="date-div">
+          <mat-label> <b>Ciudad:</b></mat-label><br/>
+          <mat-form-field style="display: block" class="example-full-width" appearance="fill">
+            <mat-label>Bogotá</mat-label>
+            <input matInput placeholder="Ciudad" disabled>
+          </mat-form-field>
+        </div>
+
+        <div style="width: 47%">
+          <mat-label> <b>Dirección:</b></mat-label><br/>
+          <mat-form-field style="display: block" class="example-full-width" appearance="fill">
+            <mat-label>Ingresa la dirección de ubicación</mat-label>
+            <input matInput placeholder="Dirección" [(ngModel)]="direccion">
+          </mat-form-field>
+        </div>
+      </div>
+
 
       <div class="form-group">
         <label for="file"><b>Imagenes</b></label>
@@ -44,7 +99,8 @@
       </div>
       <br/>
 
-      <button class="btn-schedule" [disabled]="!selectDate || !selectHour || email.invalid || searching" mat-raised-button  (click)="goToQuery()" id="btn-query">Reservar</button>
+      <button class="btn-schedule" [disabled]="!selectDate || !selectHour || email.invalid || searching ||
+      !marca || !color || !placa || !direccion" mat-raised-button  (click)="goToQuery()" id="btn-query">Reservar</button>
 
 
     </mat-card-content>
